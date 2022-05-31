@@ -73,5 +73,5 @@ echo '<!DOCTYPE html>
     </footer>
 </div>
 </body>
-</html>'
+</html>';
 ?>

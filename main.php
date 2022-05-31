@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php
+echo '<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -38,7 +39,7 @@
                 <textarea class="textarea" spellcheck="false" placeholder="Введите состав второго средства:"></textarea>
             </label>
         </div>
-        <a href="compare.html" class="button-compare"  > Сравнить </a>
+        <a href="compare.php" class="button-compare"  > Сравнить </a>
     </div>
 <!--    <div class="after">-->
 <!--        <div class="components">-->
@@ -64,4 +65,4 @@
     </footer>
 </div>
 </body>
-</html>
+</html>';
