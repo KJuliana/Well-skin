@@ -4,7 +4,7 @@ echo '<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <title>Healthy Skin - сравни составы</title>
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
     <meta name="description" content="Анализ и сраванение составов косметики">
     <link href="img/cream.ico" rel="shortcut icon" type="image/x-icon">
 </head>
@@ -12,7 +12,7 @@ echo '<!DOCTYPE html>
 <div class="root">
     <header class="flex-header">
         <a class= "logo" href="" title="Главная">
-            <img class="img-logo" src="img/cream.ico" alt="">
+            <img class="img-logo" src="./img/cream.ico" alt="">
             <div class="logo-span">
                 <span class="span-logo">Healthy Skin</span>
                 <span class="logo-describ">Анализ и сравнение составов косметики</span>
@@ -39,7 +39,7 @@ echo '<!DOCTYPE html>
                 <textarea class="textarea" spellcheck="false" placeholder="Введите состав второго средства:"></textarea>
             </label>
         </div>
-        <a href="compare.php" class="button-compare"  > Сравнить </a>
+        <a href="./compare.php" class="button-compare"  > Сравнить </a>
     </div>
 <!--    <div class="after">-->
 <!--        <div class="components">-->

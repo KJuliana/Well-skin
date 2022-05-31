@@ -4,14 +4,14 @@ echo '<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <title>Результат анализа</title>
-    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
     <link href="img/cream.ico" rel="shortcut icon" type="image/x-icon">
 </head>
 <body>
 <div class="root">
     <header class="flex-header">
         <a class= "logo" href="" title="Главная">
-            <img class="img-logo" src="img/cream.ico" alt="">
+            <img class="img-logo" src="./img/cream.ico" alt="">
             <div class="logo-span">
                 <span class="span-logo">Healthy Skin</span>
                 <span class="logo-describ">Анализ и сравнение составов косметики</span>
@@ -19,9 +19,9 @@ echo '<!DOCTYPE html>
         </a>
 
         <div class="nav">
-            <a class="a-nav" href="" title="Как это работает?"> О проекте</a>
-            <a class="a-nav" href="" title="Написать нам письмо"> Обратная связь</a>
-            <a class="a-nav" href="" title="Будьте ближе"> Сообщество</a>
+            <a class="a-nav" href="./main.php" title="Как это работает?"> О проекте</a>
+            <a class="a-nav" href="./main.php" title="Написать нам письмо"> Обратная связь</a>
+            <a class="a-nav" href="./main.php" title="Будьте ближе"> Сообщество</a>
         </div>
     </header>
     <div class="analyze">
@@ -67,11 +67,10 @@ echo '<!DOCTYPE html>
     </div>
 
     <footer class="footer">
-        <a href="" title="Как это работает?"> О проекте</a>
-        <a href="" title="Написать нам письмо"> Обратная связь</a>
-        <a href="" title="Будьте ближе"> Сообщество</a>
+        <a class="a-nav" href="./main.php" title="Как это работает?"> О проекте</a>
+        <a class="a-nav" href="./main.php" title="Написать нам письмо"> Обратная связь</a>
+        <a class="a-nav" href="./main.php" title="Будьте ближе"> Сообщество</a>
     </footer>
 </div>
 </body>
 </html>';
-?>
