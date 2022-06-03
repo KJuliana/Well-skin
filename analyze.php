@@ -10,7 +10,7 @@ echo '<!DOCTYPE html>
 <body>
 <div class="root">
     <header class="flex-header">
-        <a class= "logo" href="" title="Главная">
+        <a class= "logo" href="./main.php" title="Главная">
             <img class="img-logo" src="./img/cream.ico" alt="">
             <div class="logo-span">
                 <span class="span-logo">Healthy Skin</span>

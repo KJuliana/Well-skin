@@ -1,4 +1,21 @@
 <?php
+$source1 = ['Вода','Минеральное масло'];// база с ингридиентами 1
+$source2 = ['Вода','Минеральное масло', 'Глицерин'];// база с ингридиентами 2
+
+$html_list_1 = '';// html для первого списка ингридиентов
+$html_list_2 = '';// html для второго списка ингридиентов
+
+for($i=0;$i<count($source1); $i++){
+    $s1=$source1[$i];
+    $html_list_1= $html_list_1."<a class='sostav-a'>$s1</a>";
+}
+
+for($i=0;$i<count($source2); $i++){
+    $s2=$source2[$i];
+    $html_list_2= $html_list_2."<a class='sostav-a'>$s2</a>";
+}
+
+
 echo '<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -10,7 +27,7 @@ echo '<!DOCTYPE html>
 <body>
 <div class="root">
     <header class="flex-header">
-        <a class= "logo" href="" title="Главная">
+        <a class= "logo" href="./main.php"" title="Главная">
             <img class="img-logo" src="./img/cream.ico" alt="">
             <div class="logo-span">
                 <span class="span-logo">Healthy Skin</span>
@@ -66,30 +83,10 @@ echo '<!DOCTYPE html>
 
         <div class="sostav">
             <div class="sost1">
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Минеральное масло</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Минеральное масло</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Минеральное масло</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Минеральное масло</a>
-                <a class="sostav-a">Вода</a>
+                '.$html_list_1.'
             </div>
             <div class="sost2">
-                <a class="sostav-a">Вода <br> <span class="sost-span">Разжижает очень хорошо</span></a>
-                <a class="sostav-a">Минеральное масло</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Минеральное масло</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Вода</a>
-                <a class="sostav-a">Минеральное масло</a>
-                <a class="sostav-a">Вода</a>
-
+                '.$html_list_2.'
             </div>
         </div>
     </div>
