@@ -13,12 +13,13 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT id, name, description FROM ingredients";
-$result = mysqli_query($conn, $sql);
+
 
 $source1 = [];// база с ингридиентами 1
 $source2 = [];// база с ингридиентами 2
 
+$sql = "SELECT id, name, description FROM ingredients";
+$result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     // вывод дынных для каждой строки
     while($row = mysqli_fetch_assoc($result)) {
@@ -35,7 +36,11 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
     // вывод дынных для каждой строки
     while($row = mysqli_fetch_assoc($result)) {
-        array_push($source2, $row['name']);
+        $ingredient = array(
+            'name'=> $row['name'],
+            'description'=> $row['description']
+        );
+        array_push($source2, $ingredient);
     }
 }
 
@@ -47,12 +52,12 @@ $html_list_2 = '';// html для второго списка ингридиен�
 
 for($i=0;$i<count($source1); $i++){
     $s1=$source1[$i];
-    $html_list_1= $html_list_1."<a class='sostav-a'>".$s1['name'].' '.$s1['description']."</a>";
+    $html_list_1= $html_list_1."<li class='li_sostav'><div class='sostav-a'>".$s1['name']."</div><div class='sost-span'>".$s1['description']."</div></li>";
 }
 
 for($i=0;$i<count($source2); $i++){
     $s2=$source2[$i];
-    $html_list_2= $html_list_2."<a class='sostav-a'>$s2</a>";
+    $html_list_2= $html_list_2."<li class='li_sostav'><div class='sostav-a'>".$s2['name']."</div><div class='sost-span'>".$s2['description']."</div></li>";
 }
 
 
@@ -122,12 +127,12 @@ echo '<!DOCTYPE html>
         <p class="p-com"> Всего ингридиентов</p>
 
         <div class="sostav">
-            <div class="sost1">
+            <ul class="sost1">
                 '.$html_list_1.'
-            </div>
-            <div class="sost2">
+            </ul>
+            <ul class="sost2">
                 '.$html_list_2.'
-            </div>
+            </ul>
         </div>
     </div>
 
