@@ -1,13 +1,53 @@
 <?php
-$source1 = ['Вода','Минеральное масло'];// база с ингридиентами 1
-$source2 = ['Вода','Минеральное масло', 'Глицерин'];// база с ингридиентами 2
+
+$servername = "localhost";
+$username = "root";
+$password = "7KoroJuli7";
+$dbname = "HS";
+
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$sql = "SELECT id, name, description FROM ingredients";
+$result = mysqli_query($conn, $sql);
+
+$source1 = [];// база с ингридиентами 1
+$source2 = [];// база с ингридиентами 2
+
+if (mysqli_num_rows($result) > 0) {
+    // вывод дынных для каждой строки
+    while($row = mysqli_fetch_assoc($result)) {
+        $ingredient = array(
+            'name'=> $row['name'],
+            'description'=> $row['description']
+        );
+        array_push($source1, $ingredient);
+    }
+}
+
+$sql = "SELECT id, name, description FROM ingredients";
+$result = mysqli_query($conn, $sql);
+if (mysqli_num_rows($result) > 0) {
+    // вывод дынных для каждой строки
+    while($row = mysqli_fetch_assoc($result)) {
+        array_push($source2, $row['name']);
+    }
+}
+
+mysqli_close($conn);
+
 
 $html_list_1 = '';// html для первого списка ингридиентов
 $html_list_2 = '';// html для второго списка ингридиентов
 
 for($i=0;$i<count($source1); $i++){
     $s1=$source1[$i];
-    $html_list_1= $html_list_1."<a class='sostav-a'>$s1</a>";
+    $html_list_1= $html_list_1."<a class='sostav-a'>".$s1['name'].' '.$s1['description']."</a>";
 }
 
 for($i=0;$i<count($source2); $i++){
