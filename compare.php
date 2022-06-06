@@ -13,7 +13,10 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+$list1 = htmlspecialchars($_POST['list1']);
+$list2  = htmlspecialchars($_POST['list2']);
 
+echo  $list1, ' ', $list2;
 
 $source1 = [];// база с ингридиентами 1
 $source2 = [];// база с ингридиентами 2

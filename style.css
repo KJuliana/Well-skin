@@ -118,6 +118,10 @@ a{
     font-size: 18px;
     color: #210033;
 }
+.form_com{
+    display: flex;
+    justify-content: center;
+}
 
 .button-compare{
     font-size: 18px;
@@ -132,8 +136,6 @@ a{
     letter-spacing: 3px;
     text-align: center;
     padding: 20px;
-
-
 }
 
 .button-compare:hover{

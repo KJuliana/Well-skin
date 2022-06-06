@@ -31,15 +31,17 @@ echo '<!DOCTYPE html>
             <p class="text-ins-p"> Ввведите составы косметики для анализа в соответсвующие поисковые поля поиска. Наибольшая достоверность будет достигнута,
                 если вы введете состав в стандартном виде в соответствии с INCI (латинскими буквами).</p>
         </div>
-        <div class="s1s2">
-            <label>
-                <textarea class="textarea" spellcheck="false" placeholder="Введите состав первого средства:"></textarea>
-            </label>
-            <label>
-                <textarea class="textarea" spellcheck="false" placeholder="Введите состав второго средства:"></textarea>
-            </label>
-        </div>
-        <a href="./compare.php" class="button-compare"  > Сравнить </a>
+        <form class="form_com" action="./compare.php" method="post">
+            <div class="s1s2">
+                <label>
+                    <textarea name="list1" class="textarea" spellcheck="false" placeholder="Введите состав первого средства:"></textarea>
+                </label>
+                <label>
+                    <textarea name="list2" class="textarea" spellcheck="false" placeholder="Введите состав второго средства:"></textarea>
+                </label>
+            </div>
+            <button type="submit" class="button-compare" > Сравнить </button>
+        </form>
     </div>
 <!--    <div class="after">-->
 <!--        <div class="components">-->
