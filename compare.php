@@ -17,53 +17,62 @@ if (!isset($_GET['list1']) or !isset($_GET['list2']) or (!$_GET['list1']) or (!$
 }
 $list1 = htmlspecialchars($_GET['list1']);
 $list2  = htmlspecialchars($_GET['list2']);
-//echo  $list1, ' ', $list2;
 
 
-$source1 = [];// база с ингридиентами 1
-$source2 = [];// база с ингридиентами 2
 
-$sql = "SELECT id, name, description FROM ingredients";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0) {
-    // вывод дынных для каждой строки
-    while($row = mysqli_fetch_assoc($result)) {
-        $ingredient = array(
-            'name'=> $row['name'],
-            'description'=> $row['description']
-        );
-        array_push($source1, $ingredient);
+function parse_input($input){
+    $array = explode(', ', $input);
+    for ($i=0; $i<count($array); $i++ ){
+        $array[$i] = preg_replace('/\s*\(.+\)\s*/', '', $array[$i]);
     }
+    return $array ;
 }
 
-$sql = "SELECT id, name, description FROM ingredients";
-$result = mysqli_query($conn, $sql);
-if (mysqli_num_rows($result) > 0) {
-    // вывод дынных для каждой строки
-    while($row = mysqli_fetch_assoc($result)) {
-        $ingredient = array(
-            'name'=> $row['name'],
-            'description'=> $row['description']
-        );
-        array_push($source2, $ingredient);
+$search_list1=parse_input($list1);
+$search_list2=parse_input($list2);
+
+function search_in_db($ingredient_list,$conn){
+    $result_list = [];// база с ингридиентами 1
+    for ($i = 0; $i < count($ingredient_list); $i++) {
+        $search_text = $ingredient_list[$i];
+        if (strlen($search_text)<1){
+            continue;
+        }
+        $sql = "SELECT id, name, description FROM ingredients WHERE name LIKE'%" . mysqli_real_escape_string($conn, $search_text) . "%'";
+        $result = mysqli_query($conn, $sql);
+        $query_result=[];
+        if (mysqli_num_rows($result) > 0) {
+            // вывод дынных для каждой строки
+            while ($row = mysqli_fetch_assoc($result)) {
+                $ingredient = array(
+                    'name' => $row['name'],
+                    'description' => $row['description']
+                );
+                array_push($query_result, $ingredient);
+            }
+        }
+        array_push($result_list,...$query_result);
     }
+    return $result_list;
 }
+
+$source1 = search_in_db($search_list1,$conn);
+$source2 = search_in_db($search_list2,$conn);
 
 mysqli_close($conn);
 
-
-$html_list_1 = '';// html для первого списка ингридиентов
-$html_list_2 = '';// html для второго списка ингридиентов
-
-for($i=0;$i<count($source1); $i++){
-    $s1=$source1[$i];
-    $html_list_1= $html_list_1."<li class='li_sostav'><div class='sostav-a'>".$s1['name']."</div><div class='sost-span'>".$s1['description']."</div></li>";
+function render_list_item($ingredients){
+    $html= '';// html для списка ингридиентов
+    foreach($ingredients as $ingredient){
+        $html= $html."<li class='li_sostav'><div class='sostav-a'>".$ingredient['name']."</div><div class='sost-span'>".$ingredient['description']."</div></li>";
+    }
+    return $html;
 }
 
-for($i=0;$i<count($source2); $i++){
-    $s2=$source2[$i];
-    $html_list_2= $html_list_2."<li class='li_sostav'><div class='sostav-a'>".$s2['name']."</div><div class='sost-span'>".$s2['description']."</div></li>";
-}
+$html_list_1 = render_list_item($source1);// html для первого списка ингридиентов
+$html_list_2 = render_list_item($source2);// html для второго списка ингридиентов
+
+
 
 
 echo '<!DOCTYPE html>
