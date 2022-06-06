@@ -50,6 +50,11 @@ function search_in_db($ingredient_list,$conn){
                 );
                 array_push($query_result, $ingredient);
             }
+        } else {
+            array_push($query_result, array(
+                'name' => $search_text,
+                'description' => 'Не распознано😣')
+            );
         }
         array_push($result_list,...$query_result);
     }
