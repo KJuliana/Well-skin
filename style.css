@@ -208,12 +208,19 @@ footer>a{
     padding: 20px;
     margin: 10px;
 }
-.p-com, .h2-com, .h2-an, .p-an{
+.count, .quick_text, .h2-com, .h2-an, .p-an{
     margin-block-start: 0;
     font-family: system-ui;
     color: #210033;
     text-align: center;
 }
+.count{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    justify-content: space-between;
+}
+
 .images-com{
     display: flex;
     align-items: center;

@@ -15,9 +15,8 @@ if (!$conn) {
 if (!isset($_GET['list1']) or !isset($_GET['list2']) or (!$_GET['list1']) or (!$_GET['list2'])) {
     die("Извините, идите обратно");
 }
-$list1 = htmlspecialchars($_GET['list1']);
+$list1 = htmlspecialchars($_GET['list1']);  //Получаем текст ввода
 $list2  = htmlspecialchars($_GET['list2']);
-
 
 
 function parse_input($input){
@@ -28,7 +27,7 @@ function parse_input($input){
     return $array ;
 }
 
-$search_list1=parse_input($list1);
+$search_list1=parse_input($list1); // Парсим(приводим к виду, удобному для дальнейшей работы с ним) ввод
 $search_list2=parse_input($list2);
 
 function search_in_db($ingredient_list,$conn){
@@ -62,7 +61,7 @@ function search_in_db($ingredient_list,$conn){
     return $result_list;
 }
 
-$source1 = search_in_db($search_list1,$conn);
+$source1 = search_in_db($search_list1,$conn);  //Получаем итоговый список ингредиентов
 $source2 = search_in_db($search_list2,$conn);
 
 mysqli_close($conn);
@@ -75,8 +74,8 @@ function render_list_item($ingredients){
     return $html;
 }
 
-$html_list_1 = render_list_item($source1);// html для первого списка ингридиентов
-$html_list_2 = render_list_item($source2);// html для второго списка ингридиентов
+$html_list_1 = render_list_item($source1);// html для списка ингридиентов
+$html_list_2 = render_list_item($source2);
 
 
 
@@ -121,7 +120,7 @@ echo '<!DOCTYPE html>
         </div>
         <div class="quick">
             <h2 class="h2-com">Краткое резюме</h2>
-            <p class="p-com"> Здесь будет краткий итог по сравнению средств </p>
+            <p class="quick_text"> Здесь будет краткий итог по сравнению средств </p>
         </div>
 
         <div class="tags">
@@ -144,7 +143,11 @@ echo '<!DOCTYPE html>
 
         </div>
 
-        <p class="p-com"> Всего ингридиентов</p>
+        <div class="count">
+            <div>'.count($search_list1).'</div>
+            <div>Всего ингридиентов</div>
+            <div>'.count($search_list2).'</div>
+        </div>
 
         <div class="sostav">
             <ol class="sost1">
