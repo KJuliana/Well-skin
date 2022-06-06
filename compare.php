@@ -12,11 +12,13 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
+if (!isset($_GET['list1']) or !isset($_GET['list2']) or (!$_GET['list1']) or (!$_GET['list2'])) {
+    die("Извините, идите обратно");
+}
+$list1 = htmlspecialchars($_GET['list1']);
+$list2  = htmlspecialchars($_GET['list2']);
+//echo  $list1, ' ', $list2;
 
-$list1 = htmlspecialchars($_POST['list1']);
-$list2  = htmlspecialchars($_POST['list2']);
-
-echo  $list1, ' ', $list2;
 
 $source1 = [];// база с ингридиентами 1
 $source2 = [];// база с ингридиентами 2

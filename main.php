@@ -31,7 +31,7 @@ echo '<!DOCTYPE html>
             <p class="text-ins-p"> Ввведите составы косметики для анализа в соответсвующие поисковые поля поиска. Наибольшая достоверность будет достигнута,
                 если вы введете состав в стандартном виде в соответствии с INCI (латинскими буквами).</p>
         </div>
-        <form class="form_com" action="./compare.php" method="post">
+        <form class="form_com" action="./compare.php" method="get">
             <div class="s1s2">
                 <label>
                     <textarea name="list1" class="textarea" spellcheck="false" placeholder="Введите состав первого средства:"></textarea>
