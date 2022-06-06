@@ -34,11 +34,12 @@ $search_list2=parse_input($list2);
 function search_in_db($ingredient_list,$conn){
     $result_list = [];// база с ингридиентами 1
     for ($i = 0; $i < count($ingredient_list); $i++) {
-        $search_text = $ingredient_list[$i];
+        $search_text = mysqli_real_escape_string($conn, $ingredient_list[$i]);
         if (strlen($search_text)<1){
             continue;
         }
-        $sql = "SELECT id, name, description FROM ingredients WHERE name LIKE'%" . mysqli_real_escape_string($conn, $search_text) . "%'";
+
+        $sql = "SELECT id, name, synonyms, description FROM ingredients WHERE (name LIKE '%$search_text%') OR (synonyms LIKE '%$search_text%')";
         $result = mysqli_query($conn, $sql);
         $query_result=[];
         if (mysqli_num_rows($result) > 0) {
@@ -146,12 +147,12 @@ echo '<!DOCTYPE html>
         <p class="p-com"> Всего ингридиентов</p>
 
         <div class="sostav">
-            <ul class="sost1">
+            <ol class="sost1">
                 '.$html_list_1.'
-            </ul>
-            <ul class="sost2">
+            </ol>
+            <ol class="sost2">
                 '.$html_list_2.'
-            </ul>
+            </ol>
         </div>
     </div>
 
