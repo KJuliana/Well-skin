@@ -4,8 +4,9 @@ require_once('./components/footer.php');
 require_once('./components/header.php');
 require_once('./components/page.php');
 
-$header = render_header();
+$header = render_header('./analyze.php');
 $footer = render_footer();
+$title = "Результат анализа";
 
 $body = '
 <div class="analyze">
@@ -50,4 +51,4 @@ $body = '
     </div>
 </div>';
 
-echo render_page("Результаты анализа", $header, $footer, $body);
+echo render_page($title, $header, $footer, $body);

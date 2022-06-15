@@ -82,8 +82,9 @@ function render_list_item($ingredients) {
 $html_list_1 = render_list_item($source1);// html для списка ингридиентов
 $html_list_2 = render_list_item($source2);
 
-$header = render_header();
+$header = render_header('./compare.php');
 $footer = render_footer();
+$title = "Результат сравнения";
 
 $body = '<div class="compararison">
     <h1 class="h1-com">Результаты сравнения</h1>
@@ -139,4 +140,4 @@ $body = '<div class="compararison">
     </div>
 </div>';
 
-echo render_page("Результат сравнения", $header, $footer, $body);
+echo render_page($title, $header, $footer, $body);

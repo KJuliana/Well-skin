@@ -4,8 +4,9 @@ require_once('./components/footer.php');
 require_once('./components/header.php');
 require_once('./components/page.php');
 
-$header = render_header();
+$header = render_header('./main.php');
 $footer = render_footer();
+$title = "Сравнение составов";
 
 $body = (
 '<div class="compare">
@@ -44,5 +45,4 @@ $body = (
 <!--    </div>-->'
 );
 
-
-echo render_page("Сравнение составов", $header, $footer, $body);
+echo render_page($title, $header, $footer, $body);
