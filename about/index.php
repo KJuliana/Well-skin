@@ -1,10 +1,10 @@
 <?php
 
-require_once('./components/footer.php');
-require_once('./components/header.php');
-require_once('./components/page.php');
+require_once('../@components/footer.php');
+require_once('../@components/header.php');
+require_once('../@components/page.php');
 
-$header = render_header('./about.php');
+$header = render_header('/about');
 $footer = render_footer();
 $title = "О проекте";
 

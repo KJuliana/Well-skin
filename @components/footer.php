@@ -1,9 +1,9 @@
 <?php
 
 $footer_links = [
-    './main.php' => 'Сравнение состава',
-    './about.php' => 'О проекте',
-    './contacts.php' => 'Обратная связь',
+    '/main' => 'Сравнение состава',
+    '/about' => 'О проекте',
+    '/contacts' => 'Обратная связь',
 ];
 
 $copyright = '© Juliana Koroleva, 2022';

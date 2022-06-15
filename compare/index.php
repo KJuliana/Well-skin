@@ -1,8 +1,10 @@
 <?php
 
-require_once('./components/footer.php');
-require_once('./components/header.php');
-require_once('./components/page.php');
+require_once('../@components/footer.php');
+require_once('../@components/header.php');
+require_once('../@components/page.php');
+require_once('../@db/connect.php');
+require_once('../@db/find_ingredients.php');
 
 $servername = "localhost";
 $username = "root";
@@ -86,7 +88,7 @@ function render_list_item($ingredients) {
 $html_list_1 = render_list_item($source1);// html для списка ингридиентов
 $html_list_2 = render_list_item($source2);
 
-$header = render_header('./compare.php');
+$header = render_header('/compare');
 $footer = render_footer();
 $title = "Результат сравнения";
 

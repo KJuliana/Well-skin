@@ -1,9 +1,9 @@
 <?php
 
 $links = [
-    './main.php' => 'Сравнение составов',
-    './about.php' => 'О проекте',
-    './contacts.php' => 'Обратная связь',
+    '/main' => 'Сравнение составов',
+    '/about' => 'О проекте',
+    '/contacts' => 'Обратная связь',
 ]; // Объявление ассоциативного массива
 
 function render_nav_link(string $url, string $name, bool $is_current) {
