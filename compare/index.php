@@ -33,11 +33,18 @@ function render_list($ingredients) {
     $html = '';// html для списка ингридиентов
 
     foreach ($ingredients as $ingredient) {
+        if ($ingredient['is_found']){
+            $prefix = " 🥳 ";
+        } else {
+            $prefix = "";
+        }
+
         $html = $html . "
-<li class='li_sostav'>
-    <div class='sostav-a'>" . $ingredient['name'] . "</div>
-    <div class='sost-span'>" . $ingredient['description'] . "</div>
-</li>";
+            <li class='li_sostav'>
+                <div class='sostav-a'>". $prefix . $ingredient['name'] . "</div>
+                <div class='sost-span'>" . $ingredient['description'] . "</div>
+            </li>";
+
     }
 
     return $html;
