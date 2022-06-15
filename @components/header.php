@@ -25,7 +25,6 @@ function render_header(string $current_url) {  // Функция, которая
 <header class='header'>
     <a class='logo' href='./main.php' aria-label='Главная'>
         <span class='logo__common'>
-            <img class='logo__image' src='img/cream.ico' alt=''>
             <span class='logo__title'>Well Skin</span>
         </span>
         <span class='logo__description'>Анализ и сравнение косметики</span>
