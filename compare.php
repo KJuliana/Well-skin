@@ -19,6 +19,10 @@ if (!$conn) {
 if (!isset($_GET['list1']) or !isset($_GET['list2']) or (!$_GET['list1']) or (!$_GET['list2'])) {
     die("Извините, идите обратно");
 }
+
+$name1 = $_GET['name1'] ? htmlspecialchars($_GET['name1']) : 'Средство 1';
+$name2 = $_GET['name2'] ? htmlspecialchars($_GET['name2']) : 'Средство 2';
+
 //Получаем текст из окнон ввода
 $list1 = htmlspecialchars($_GET['list1']);
 $list2 = htmlspecialchars($_GET['list2']);
@@ -86,58 +90,38 @@ $header = render_header('./compare.php');
 $footer = render_footer();
 $title = "Результат сравнения";
 
-$body = '<div class="compararison">
-    <h1 class="h1-com">Результаты сравнения</h1>
-    <div class="images-com">
-        <div class="tube-image-com">
-            <img class="tube-img" src="./img/blue.png" alt="">
-            <h3 class="tube-h3" >Тюбик 1</h3>
-        </div>
-        <img class="vs-img" src="./img/vs.png" alt="">
-        <div class="tube">
-            <img class="tube-img" src="./img/green.png" alt="">
-            <h3 class="tube-h3">Тюбик 1</h3>
-        </div>
-    </div>
-    <div class="quick">
-        <h2 class="h2-com">Краткое резюме</h2>
-        <p class="quick_text"> Здесь будет краткий итог по сравнению средств </p>
-    </div>
-
-    <div class="tags">
-        <div class="tag1">
-            <a class="tag-an">Без парабенов</a>
-            <a class="tag-an">Может сушить кожу</a>
-            <a class="tag-an">Мочевина</a>
-            <a class="tag-an">Эко</a>
-        </div>
-        <div class="tag2">
-            <a class="tag-an">Без парабенов</a>
-            <a class="tag-an">Может сушить кожу</a>
-            <a class="tag-an">Мочевина</a>
-            <a class="tag-an">Эко</a>
-            <a class="tag-an">Без парабенов</a>
-            <a class="tag-an">Может сушить кожу</a>
-            <a class="tag-an">Мочевина</a>
-            <a class="tag-an">Эко</a>
+$body = (
+    "<div class='result'>
+    <div class='comparison comparison--names'>
+        <div class='comparison__item'>
+            <div class='result__name'>$name1</div>
         </div>
 
+        <div class='comparison__separator'></div>
+
+        <div class='comparison__item'>
+            <div class='result__name'>$name2</div>
+        </div>
     </div>
 
-    <div class="count">
-        <div>' . count($search_list1) . '</div>
-        <div>Всего ингридиентов</div>
-        <div>' . count($search_list2) . '</div>
+    <div class='total'>
+        <div class='total__count'>" . count($search_list1) . "</div>
+        <div class='total__label'>Всего ингридиентов</div>
+        <div class='total__count'>" . count($search_list2) . "</div>
     </div>
 
-    <div class="sostav">
-        <ol class="sost1">
-            ' . $html_list_1 . '
-        </ol>
-        <ol class="sost2">
-            ' . $html_list_2 . '
-        </ol>
+    <div class='comparison'>
+        <div class='comparison__item'>
+            <ol class='result-list'>$html_list_1</ol>
+        </div>
+
+        <div class='comparison__separator'></div>
+
+        <div class='comparison__item'>
+            <ol class='result-list'>$html_list_2</ol>
+        </div>
     </div>
-</div>';
+</div>"
+);
 
 echo render_page($title, $header, $footer, $body);
