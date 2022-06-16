@@ -88,13 +88,19 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    font-size: 0.8rem;
+    font-size: 0.77rem;
     line-height: 1;
     text-decoration: none;
     transform-origin: bottom left;
     user-select: none;
     white-space: nowrap;
     -webkit-user-drag: none;
+}
+
+@media(max-width: 767px) {
+    .logo{
+        font-size: 0.87rem;
+    }
 }
 
 .logo__common {
