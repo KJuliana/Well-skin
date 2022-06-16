@@ -2,9 +2,9 @@
 // Возвращает экземпляр подключения
 function db() {
     $servername = "localhost";
-    $username = "root";
+    $username = "h163748_root";
     $password = "7KoroJuli7";
-    $dbname = "HS";
+    $dbname = "h163748_hs";
 
     // Create connection
     $db = new mysqli($servername, $username, $password, $dbname);
