@@ -139,6 +139,7 @@ a {
         background-color: hsla(350, 0%, 98%, 1);
         transition: 0.3s ease-out;
         transform: translateX(calc(var(--header-height) + 100%));
+        box-shadow: -10px 0px 8px -10px;
     }
     .nav.active{
         transform: none;
@@ -221,13 +222,11 @@ a {
 }
 
 .header__burger.active:before {
-    transform: rotate(45deg);
-    top: 9px;
+    transform: translateY(9px) rotate(45deg);
 }
 
 .header__burger.active:after{
-    transform: rotate(-45deg);
-    bottom: 9px;
+    transform: translateY(-9px)  rotate(-45deg);
 }
 
 .header__burger.active span{

@@ -27,7 +27,7 @@ function render_page(string $title, string $header_html, string $footer_html, st
     <div class='page__footer'>$footer_html</div>
 </div>
 
-<script src='/script.js' type='text/javascript' />
+<script src='/script.js' type='text/javascript'></script>
 
 </body>
 </html>";
