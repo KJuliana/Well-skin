@@ -29,7 +29,11 @@ function render_header(string $current_url) {  // Функция, которая
         </span>
         <span class='logo__description'>Анализ и сравнение косметики</span>
     </a>
-    
-    <nav class='nav'>$nav_links_html</nav>
+
+    <button id='burger' class='header__burger'>
+        <span></span>
+    </button>
+
+    <nav id='nav' class='nav'>$nav_links_html</nav>
 </header>";
 }
