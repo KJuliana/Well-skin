@@ -7,6 +7,7 @@ function render_page(string $title, string $header_html, string $footer_html, st
 
 <head>
     <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,'>
     <title>$title – Well Skin</title>
     <link rel='stylesheet' type='text/css' href='/style.css'/>
     <meta name='description' content='Анализ и сраванение составов косметики'>

@@ -1,7 +1,7 @@
 <?php
 
 $links = [
-    '/main' => 'Сравнение составов',
+    '/' => 'Сравнение составов',
     '/about' => 'О проекте',
     '/contacts' => 'Обратная связь',
 ]; // Объявление ассоциативного массива
@@ -23,7 +23,7 @@ function render_header(string $current_url) {  // Функция, которая
 
     return " 
 <header class='header'>
-    <a class='logo' href='/main' aria-label='Главная'>
+    <a class='logo' href='/' aria-label='Главная'>
         <span class='logo__common'>
             <span class='logo__title'>Well Skin</span>
         </span>

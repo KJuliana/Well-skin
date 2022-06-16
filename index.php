@@ -1,10 +1,10 @@
 <?php
 
-require_once('../@components/footer.php');
-require_once('../@components/header.php');
-require_once('../@components/page.php');
+require_once('./@components/footer.php');
+require_once('./@components/header.php');
+require_once('./@components/page.php');
 
-$header = render_header('/main');
+$header = render_header('/');
 $footer = render_footer();
 $title = "Сравнение составов";
 
@@ -18,7 +18,7 @@ $body = (
 </section>
 
 <section class='page__form'>
-    <form class='form' action='../compare/index.php' method='get'>
+    <form class='form' action='/compare' method='get'>
         <div class='comparison'>
             <div class='comparison__item'>
                 <input class='input__text' name='name1' type='text' placeholder='Средство 1'/>
