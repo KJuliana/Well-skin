@@ -88,7 +88,7 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    font-size: 0.77rem;
+    font-size: 0.75rem;
     line-height: 1;
     text-decoration: none;
     transform-origin: bottom left;
@@ -99,7 +99,7 @@ a {
 
 @media(max-width: 767px) {
     .logo{
-        font-size: 0.87rem;
+        font-size: 0.875rem;
     }
 }
 
