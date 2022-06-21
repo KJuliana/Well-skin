@@ -1,10 +1,10 @@
 <?php
 
-require_once('../@components/footer.php');
-require_once('../@components/header.php');
-require_once('../@components/page.php');
-require_once('../@db/connect.php');
-require_once('../@db/find_ingredients.php');
+require_once('../../@components/footer.php');
+require_once('../../@components/header.php');
+require_once('../../@components/page.php');
+require_once('../../@db/connect.php');
+require_once('../../@db/find_ingredients.php');
 require_once('./utils.php');
 
 if (!isset($_GET['list1']) or !isset($_GET['list2']) or (!$_GET['list1']) or (!$_GET['list2'])) {
@@ -54,7 +54,7 @@ function render_list($ingredients) {
 $html_list_1 = render_list($source1);
 $html_list_2 = render_list($source2);
 
-$header = render_header('/compare');
+$header = render_header('/ingcompare/result');
 $footer = render_footer();
 $title = "Результат сравнения";
 
