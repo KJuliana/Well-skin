@@ -17,6 +17,7 @@ function find_ingredients($ingredient_list, mysqli $db) {
             // вывод данных для каждой строки
             while ($row = mysqli_fetch_assoc($result)) {
                 $ingredient = [
+                    'id' =>$row['id'],
                     'name' => $row['name'],
                     'description' => $row['description'],
                     'is_found' => true

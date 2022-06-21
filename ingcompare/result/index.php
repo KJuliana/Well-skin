@@ -19,7 +19,7 @@ $name2 = $_GET['name2'] ? htmlspecialchars($_GET['name2']) : 'Средство 2
 $list1 = htmlspecialchars($_GET['list1']);
 $list2 = htmlspecialchars($_GET['list2']);
 
-// Парсим(приводим к виду, удобному для дальнейшей работы с ним) ввод
+// Парсим ввод (приводим к виду, удобному для дальнейшей работы с ним)
 $search_list1 = parse_input($list1);
 $search_list2 = parse_input($list2);
 
@@ -38,10 +38,15 @@ function render_list($ingredients) {
         } else {
             $prefix = "";
         }
+        if ($ingredient['id']){
+            $name = "  <a href='/ingredient/?ing=" . $ingredient['id'] . "' class='sostav-a'>". $prefix . $ingredient['name'] . "</a> ";
+        } else {
+            $name= "<span class='sostav-a'>". $prefix . $ingredient['name'] . "</span>";
+        }
 
         $html = $html . "
             <li class='li_sostav'>
-                <div class='sostav-a'>". $prefix . $ingredient['name'] . "</div>
+                $name
                 <div class='sost-span'>" . $ingredient['description'] . "</div>
             </li>";
 
