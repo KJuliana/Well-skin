@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\ArrayShape;
+
 require_once('../@components/footer.php');
 require_once('../@components/header.php');
 require_once('../@components/page.php');
@@ -12,30 +14,28 @@ if (!isset($_GET['ing'])){
 $ing = htmlspecialchars($_GET['ing']);
 
 //функция, которая получает данные
+#[ArrayShape(['name' => "string", 'full_description' => "string", 'cosing_inci' => "string", 'cosing_description' => "string", 'cosing_cas' => "string", 'cosing_es' => "string", 'cosing_functions' => "string"])]
 function get_information_about_ingredient($id, mysqli $db) {
-    $sql = "SELECT * FROM ingredients WHERE id = '$id' ";
+    $sql = " SELECT i.name, c.inci, c.description, c.cas, c.es, c.functions, i.full_description FROM ingredients AS i  
+                LEFT OUTER JOIN cosing AS c
+                ON i.cosing = c.id 
+             WHERE i.id = '$id'";
 
     $result = $db->query($sql);
     $row = mysqli_fetch_assoc($result);
-    $id_cosing= $row['cosing'];
-
-    $sql_cosing = "SELECT * FROM cosing WHERE id = '$id_cosing' ";
-    $result_cosing = $db->query($sql_cosing);
-    $cosing = mysqli_fetch_assoc($result_cosing);
 
     if (!$row){
         die('Не найдено');
     }
-    $ingredient = [
+    return [
         'name' => $row['name'],
-        'fulldescription' => trim($row['fulldescription']),
-        'cosing_inci' => trim($cosing['inci']) ?: '–',
-        'cosing_description' => trim($cosing['description']) ?: '–',
-        'cosing_cas' => trim($cosing['cas']) ?: '–',
-        'cosing_es' => trim($cosing['es']) ?: '–',
-        'cosing_functions' => trim($cosing['functions']) ?: '–',
+        'full_description' => trim($row['full_description']),
+        'cosing_inci' => trim($row['inci']) ?: '–',
+        'cosing_description' => trim($row['description']) ?: '–',
+        'cosing_cas' => trim($row['cas']) ?: '–',
+        'cosing_es' => trim($row['es']) ?: '–',
+        'cosing_functions' => trim($row['functions']) ?: '–',
     ];
-    return $ingredient;
 }
 
 // Получаем информацию об ингредиенте
@@ -44,9 +44,9 @@ $information = get_information_about_ingredient($ing, $db);
 $db->close();
 
 //Функция, которая создает html
-function render_list($ingredient) {
-    $html ='
-        <p class="intro__text">'. $ingredient['fulldescription'] .'</p>
+function render_list($ingredient): string {
+    return '
+        <p class="intro__text">'. $ingredient['full_description'] .'</p>
         <p class="intro__text">Официальная информация COSING</p>
         <p class="intro__text"> INCI name: '. $ingredient['cosing_inci'] .'</p>
         <p class="intro__text"> All Functions: '. $ingredient['cosing_functions'] .'</p>
@@ -54,7 +54,6 @@ function render_list($ingredient) {
         <p class="intro__text"> CAS #: '. $ingredient['cosing_cas'] .'</p>
         <p class="intro__text"> EC #: '. $ingredient['cosing_es'] .'</p>
     ';
-    return $html;
 }
 
 $html_list = render_list($information);
