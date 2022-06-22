@@ -13,7 +13,7 @@ $ing = htmlspecialchars($_GET['ing']);
 
 //функция, которая получает данные
 function get_information_about_ingredient($id, mysqli $db) {
-    $sql = "SELECT name, description FROM ingredients WHERE id = '$id' ";
+    $sql = "SELECT * FROM ingredients WHERE id = '$id' ";
 
     $result = $db->query($sql);
     $row = mysqli_fetch_assoc($result);
@@ -23,7 +23,10 @@ function get_information_about_ingredient($id, mysqli $db) {
     }
     $ingredient = [
         'name' => $row['name'],
-        'description' => $row['description']
+        'description' => $row['description'],
+        'fulldescription' => $row['fulldescription'],
+        'doing' => $row['doing'],
+        'cosing' => $row['cosing'],
     ];
     return $ingredient;
 }
@@ -36,12 +39,12 @@ $db->close();
 //Функция, которая создает html
 function render_list($ingredient) {
     $html = '';// html для списка ингридиентов
-    $html = $html . "
-        <li class='li_sostav'>
-            <div class='sostav-a'>". $ingredient['name'] . "</div>
-            <div class='sost-span'>" . $ingredient['description'] . "</div>
-        </li>";
-
+    $html ='
+        <p class="intro__text">' . $ingredient['description'] .'</p>
+        <p class="intro__text">' . $ingredient['fulldescription'] .'</p>
+        <p class="intro__text">' . $ingredient['doing'] .'</p>
+        <p class="intro__text">' . $ingredient['cosing'] .'</p>
+    ';
     return $html;
 }
 
@@ -49,12 +52,9 @@ $html_list = render_list($information);
 
 $header = render_header('/ingredient');
 $footer = render_footer();
-$title = "";
+$title = $information['name'];
 
-$body = "
-<section class='intro'>
-    <p class='intro__text'>Вот такой вот ингредиент</p>
-</section>
-        <div class='comparison__item'>" . $html_list . "</div> ";
+$body = ' <div>' . $html_list . '</div>';
+
 
 echo render_page($title, $header, $footer, $body);
