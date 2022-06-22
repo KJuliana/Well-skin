@@ -16,17 +16,30 @@ $ing = htmlspecialchars($_GET['ing']);
 //функция, которая получает данные
 #[ArrayShape(['name' => "string", 'full_description' => "string", 'cosing_inci' => "string", 'cosing_description' => "string", 'cosing_cas' => "string", 'cosing_es' => "string", 'cosing_functions' => "string"])]
 function get_information_about_ingredient($id, mysqli $db) {
-    $sql = " SELECT i.name, c.inci, c.description, c.cas, c.es, c.functions, i.full_description FROM ingredients AS i  
-                LEFT OUTER JOIN cosing AS c
-                ON i.cosing = c.id 
+    $sql = " SELECT i.name, c.inci, c.description, c.cas, c.es, c.functions, c.id  ,i.full_description FROM ingredients AS i  
+                LEFT OUTER JOIN cosing AS c    
+                ON i.cosing = c.id                                                                        
              WHERE i.id = '$id'";
 
     $result = $db->query($sql);
     $row = mysqli_fetch_assoc($result);
 
+    $cosing_id = $row['id'];
+    $sql_function = "SELECT functions.name FROM con_f_c
+                        RIGHT OUTER JOIN functions
+                        ON functions.id = con_f_c.fun
+                     WHERE con_f_c.cosing = '$cosing_id'";
+    $result_function = $db->query($sql_function);
+
     if (!$row){
         die('Не найдено');
     }
+
+    $functions = [];
+    while ($function = mysqli_fetch_assoc($result_function)) {
+        array_push($functions, trim($function['name']));
+    }
+
     return [
         'name' => $row['name'],
         'full_description' => trim($row['full_description']),
@@ -34,7 +47,7 @@ function get_information_about_ingredient($id, mysqli $db) {
         'cosing_description' => trim($row['description']) ?: '–',
         'cosing_cas' => trim($row['cas']) ?: '–',
         'cosing_es' => trim($row['es']) ?: '–',
-        'cosing_functions' => trim($row['functions']) ?: '–',
+        'cosing_functions' => count($functions)>0 ? implode(', ', $functions) : '–',
     ];
 }
 
