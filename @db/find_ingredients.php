@@ -1,6 +1,6 @@
 <?php
 
-function find_ingredients($ingredient_list, mysqli $db) {
+function find_ingredients($ingredient_list, mysqli $db): array {
     $result_list = [];// база с ингридиентами 1
 
     foreach ($ingredient_list as $ingredient) {
@@ -9,7 +9,7 @@ function find_ingredients($ingredient_list, mysqli $db) {
             continue;
         }
 
-        $sql = "SELECT id, name, synonyms, description FROM ingredients WHERE (name LIKE '%$search_text%') OR (synonyms LIKE '%$search_text%')";
+        $sql = "SELECT id, name, synonyms, description, score FROM ingredients WHERE (name LIKE '%$search_text%') OR (synonyms LIKE '%$search_text%')";
         $result = $db->query($sql);
         $query_result = [];
 
@@ -20,17 +20,17 @@ function find_ingredients($ingredient_list, mysqli $db) {
                     'id' =>$row['id'],
                     'name' => $row['name'],
                     'description' => $row['description'],
-                    'is_found' => true
+                    'score' => $row['score']
                 ];
-                array_push($query_result, $ingredient);
+                $query_result[] = $ingredient;
             }
         } else {
             $ingredient = [
                 'name' => $search_text,
                 'description' => 'Не распознано😣',
-                'is_found' => false
+                'score' => '👽'
             ];
-            array_push($query_result, $ingredient);
+            $query_result[] = $ingredient;
         }
         array_push($result_list, ...$query_result);
     }

@@ -29,25 +29,26 @@ $source1 = find_ingredients($search_list1, $db);
 $source2 = find_ingredients($search_list2, $db);
 $db->close();
 
-function render_list($ingredients) {
+function render_list($ingredients): string {
     $html = '';// html для списка ингридиентов
 
     foreach ($ingredients as $ingredient) {
-        if ($ingredient['is_found']){
-            $prefix = " 🥳 ";
+
+        if (isset($ingredient['id'])) {
+            $name = "<a class='ingredient__name' href='/ingredient/?ing=" . $ingredient['id'] . "'>" . $ingredient['name'] . "</a> ";
+            $prefix = "founded";
         } else {
+            $name= "<span class='ingredient__name'>". $ingredient['name'] . "</span>";
             $prefix = "";
-        }
-        if ($ingredient['id']){
-            $name = "  <a href='/ingredient/?ing=" . $ingredient['id'] . "' class='sostav-a'>". $prefix . $ingredient['name'] . "</a> ";
-        } else {
-            $name= "<span class='sostav-a'>". $prefix . $ingredient['name'] . "</span>";
         }
 
         $html = $html . "
-            <li class='li_sostav'>
-                $name
-                <div class='sost-span'>" . $ingredient['description'] . "</div>
+            <li class='result-list__item ingredient $prefix'>
+                <div class='ingredient__text'>
+                    $name
+                    <span class='ingredient__description'>" . $ingredient['description'] . "</span>
+                </div>    
+                <div class='ingredient__score'>" . $ingredient['score'] . "</div>
             </li>";
 
     }
