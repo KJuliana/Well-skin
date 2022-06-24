@@ -21,6 +21,9 @@ function render_header(string $current_url) {  // Функция, которая
         $nav_links_html .= render_nav_link($url, $name, $url === $current_url);
     } // Перебираем каждый элемент массива и с каждой итерацией добавляем в пустую строку $nav_links_html элемент <a>
 
+
+    $search_text = $_GET['search_text'] ?? '';
+
     return " 
 <header class='header'>
     <a class='logo' href='/' aria-label='Главная'>
@@ -29,11 +32,19 @@ function render_header(string $current_url) {  // Функция, которая
         </span>
         <span class='logo__description'>Анализ и сравнение косметики</span>
     </a>
-
+   
     <button id='burger' class='header__burger'>
         <span></span>
     </button>
 
-    <nav id='nav' class='nav'>$nav_links_html</nav>
+    <nav id='nav' class='nav'>
+        <form class='search' action='/search' method='get'>
+            <input class='search__input-text' name='search_text' type='search' placeholder='Поиск' value='$search_text' autocomplete='off' required />
+            <button type='submit' class='search__button'>🔍</button>
+        </form>
+        <div class ='nav__links'>
+        $nav_links_html
+        </div>
+    </nav>
 </header>";
 }
