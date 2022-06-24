@@ -565,3 +565,22 @@ a {
 .found-list{
     list-style: none;
 }
+
+.ingredient-card{
+    display: flex;
+    align-items: flex-start;
+    padding: 2em 0;
+    gap: 2em;
+}
+
+.ingredient-card__about{
+}
+
+.ingredient_image{
+    flex-basis: 30%;
+    flex-shrink: 0;
+    margin: 0.75em auto 0;
+    width: 30%;
+    background: #f5f5f5;
+    aspect-ratio: 1;
+}

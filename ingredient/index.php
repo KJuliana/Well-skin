@@ -14,9 +14,9 @@ if (!isset($_GET['ing'])){
 $ing = htmlspecialchars($_GET['ing']);
 
 //функция, которая получает данные
-#[ArrayShape(['name' => "string", 'full_description' => "string", 'cosing_inci' => "string", 'cosing_description' => "string", 'cosing_cas' => "string", 'cosing_es' => "string", 'cosing_functions' => "string"])]
+#[ArrayShape(['name' => "string", 'image' => "string", 'full_description' => "string", 'cosing_inci' => "string", 'cosing_description' => "string", 'cosing_cas' => "string", 'cosing_es' => "string", 'cosing_functions' => "string"])]
 function get_information_about_ingredient($id, mysqli $db) {
-    $sql = " SELECT i.name, c.inci, c.description, c.cas, c.es, c.functions, c.id  ,i.full_description FROM ingredients AS i  
+    $sql = " SELECT i.name, i.image, c.inci, c.description, c.cas, c.es, c.functions, c.id  ,i.full_description FROM ingredients AS i  
                 LEFT OUTER JOIN cosing AS c    
                 ON i.cosing = c.id                                                                        
              WHERE i.id = '$id'";
@@ -42,6 +42,7 @@ function get_information_about_ingredient($id, mysqli $db) {
 
     return [
         'name' => $row['name'],
+        'image' => $row['image'],
         'full_description' => trim($row['full_description']),
         'cosing_inci' => trim($row['inci']) ?: '–',
         'cosing_description' => trim($row['description']) ?: '–',
@@ -59,6 +60,7 @@ $db->close();
 //Функция, которая создает html
 function render_list($ingredient): string {
     return '
+        <div class = "ingredient-card__about">
         <p class="intro__text">'. $ingredient['full_description'] .'</p>
         <p class="intro__text">Официальная информация COSING</p>
         <p class="intro__text"> INCI name: '. $ingredient['cosing_inci'] .'</p>
@@ -66,6 +68,9 @@ function render_list($ingredient): string {
         <p class="intro__text"> Description: '. $ingredient['cosing_description'] .'</p>
         <p class="intro__text"> CAS #: '. $ingredient['cosing_cas'] .'</p>
         <p class="intro__text"> EC #: '. $ingredient['cosing_es'] .'</p>
+        <p class="intro__text">Источник изображения: PubChem </p>
+        </div>
+        <img class = "ingredient_image" alt  src="' . $ingredient['image'] . '">
     ';
 }
 
@@ -75,7 +80,7 @@ $header = render_header('/ingredient');
 $footer = render_footer();
 $title = $information['name'];
 
-$body = ' <div>' . $html_list . '</div>';
+$body = ' <div class = "ingredient-card">' . $html_list . '</div>';
 
 
 echo render_page($title, $header, $footer, $body);
