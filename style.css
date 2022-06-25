@@ -585,9 +585,26 @@ a {
     aspect-ratio: 1;
 }
 
+
 .table_concern{
     color: inherit;
     font: inherit;
     border-top: 1px solid var(--border-color) ;
     border-bottom: 1px solid var(--border-color) ;
+    padding: 1rem;
+    width: 90%;
 }
+
+.table_concern td {
+    padding: 0.5rem;
+}
+
+.table_concern th {
+    padding: 0.25rem;
+    text-align: start;
+}
+
+
+
+
+

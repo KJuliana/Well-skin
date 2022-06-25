@@ -73,7 +73,8 @@ function get_information_about_ingredient($id, mysqli $db) {
 }
 
 function render_concerns($concerns): string {
-    $html='<table class="table_concern">';
+    $html='<table class="table_concern"> 
+                <tr><th>Опасность</th><th>Уровень</th></tr> ';
     foreach ($concerns as $concern){
         $html.= '<tr><td>'. $concern['name']. '</td><td>'. $concern['level'].'</td></tr>';
     }
