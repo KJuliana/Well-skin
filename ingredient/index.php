@@ -87,7 +87,7 @@ function render_refs($refs): string {
     foreach ( $array_refs as  $ref) {
         $html .= '<li>' . $ref . ' </li>';
     }
-    return '<ol>'. $html .'</ol>';
+    return '<ol>'. $html .' <li class="intro__text"> Изображение: PubChem </li> </ol>';
 }
 // Получаем информацию об ингредиенте
 $db = db();
@@ -108,9 +108,8 @@ function render_list($ingredient): string {
         <p class="intro__text"> EC #: '. $ingredient['cosing_es'] .'</p>
         <p class="intro__text"> Источники:</p>
         <p class="intro__text">'. render_refs($ingredient['refs']) .'</p>
-        <p class="intro__text"> Изображение: PubChem </p>
         </div>
-        <img class = "ingredient_image" alt  src="' . $ingredient['image'] . '">
+        <img class = "ingredient_image" src="' . $ingredient['image'] . '">
     ';
 }
 
