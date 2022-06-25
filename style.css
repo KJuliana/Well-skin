@@ -576,7 +576,7 @@ a {
 @media(max-width:767px) {
     .ingredient-card {
         flex-direction: column;
-        padding: 0;
+        gap: 0;
     }
 }
 
