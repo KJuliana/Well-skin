@@ -87,7 +87,7 @@ function render_refs($refs): string {
     foreach ( $array_refs as  $ref) {
         $html .= '<li>' . $ref . ' </li>';
     }
-    return '<ol>'. $html .' <li class="intro__text"> Изображение: PubChem </li> </ol>';
+    return '<ol class="ingredient-card__about__list">'. $html .' <li class="ingredient-card__about__item"> Изображение: PubChem </li> </ol>';
 }
 // Получаем информацию об ингредиенте
 $db = db();
@@ -98,16 +98,16 @@ $db->close();
 function render_list($ingredient): string {
     return '
         <div class = "ingredient-card__about">
-        <p class="intro__text">'. $ingredient['full_description'] .'</p>
-        <p class="intro__text">'. render_concerns($ingredient['concerns']) .'</p>
-        <p class="intro__text">Официальная информация COSING</p>
-        <p class="intro__text"> INCI name: '. $ingredient['cosing_inci'] .'</p>
-        <p class="intro__text"> All Functions: '. $ingredient['cosing_functions'] .'</p>
-        <p class="intro__text"> Description: '. $ingredient['cosing_description'] .'</p>
-        <p class="intro__text"> CAS #: '. $ingredient['cosing_cas'] .'</p>
-        <p class="intro__text"> EC #: '. $ingredient['cosing_es'] .'</p>
-        <p class="intro__text"> Источники:</p>
-        <p class="intro__text">'. render_refs($ingredient['refs']) .'</p>
+        <p class="ingredient-card__about__text">'. $ingredient['full_description'] .'</p>
+        <p class="ingredient-card__about__text">'. render_concerns($ingredient['concerns']) .'</p>
+        <p class="ingredient-card__about__header">Официальная информация COSING</p>
+        <p class="ingredient-card__about__text"> INCI name: '. $ingredient['cosing_inci'] .'</p>
+        <p class="ingredient-card__about__text"> All Functions: '. $ingredient['cosing_functions'] .'</p>
+        <p class="ingredient-card__about__text"> Description: '. $ingredient['cosing_description'] .'</p>
+        <p class="ingredient-card__about__text"> CAS #: '. $ingredient['cosing_cas'] .'</p>
+        <p class="ingredient-card__about__text"> EC #: '. $ingredient['cosing_es'] .'</p>
+        <p class="ingredient-card__about__header"> Источники:</p>
+        <p>'. render_refs($ingredient['refs']) .'</p>
         </div>
         <img class = "ingredient_image" src="' . $ingredient['image'] . '">
     ';
