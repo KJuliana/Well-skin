@@ -14,7 +14,7 @@ if (!isset($_GET['ing'])){
 $ing = htmlspecialchars($_GET['ing']);
 
 //функция, которая получает данные
-#[ArrayShape(['name' => "string", 'image' => "string", 'refs' => "string", 'full_description' => "string", 'cosing_inci' => "string", 'cosing_description' => "string", 'cosing_cas' => "string", 'cosing_es' => "string", 'cosing_functions' => "string"])]
+#[ArrayShape(['name' => "string", 'image' => "string", 'concerns' =>"array", 'refs' => "string", 'full_description' => "string", 'cosing_inci' => "string", 'cosing_description' => "string", 'cosing_cas' => "string", 'cosing_es' => "string", 'cosing_functions' => "string"])]
 function get_information_about_ingredient($id, mysqli $db) {
     $sql = " SELECT i.id, i.name, i.image, i.refs, c.inci, c.description, c.cas, c.es, c.functions, c.id as cosing_id  ,i.full_description FROM ingredients AS i  
                 LEFT OUTER JOIN cosing AS c    
@@ -37,7 +37,7 @@ function get_information_about_ingredient($id, mysqli $db) {
 
     $functions = [];
     while ($function = mysqli_fetch_assoc($result_function)) {
-        array_push($functions, trim($function['name']));
+        $functions[] = trim($function['name']);
     }
 
     $ingredient_id= $row['id'];
@@ -51,10 +51,10 @@ function get_information_about_ingredient($id, mysqli $db) {
 
     $concerns = [];
     while ($concern = mysqli_fetch_assoc($result_concerns)) {
-        array_push($concerns, [
+        $concerns[] = [
             'level' => trim($concern['name']),
             'name' => trim($concern['ru_name']),
-        ]);
+        ];
     }
 
 
@@ -83,11 +83,10 @@ function render_concerns($concerns): string {
 function render_refs($refs): string {
     $html='';
     $array_refs =explode(PHP_EOL, $refs);
-    foreach ( $array_refs as  $ref){
-        $html.= '<li>'. $ref. ' </li>';
+    foreach ( $array_refs as  $ref) {
+        $html .= '<li>' . $ref . ' </li>';
     }
-    $html_list = '<ol>'. $html .'</ol>';
-    return $html_list;
+    return '<ol>'. $html .'</ol>';
 }
 // Получаем информацию об ингредиенте
 $db = db();

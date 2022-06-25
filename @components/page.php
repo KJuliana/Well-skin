@@ -1,6 +1,6 @@
 <?php
-
-function render_page(string $title, string $header_html, string $footer_html, string $body_html) {
+function render_page(string $title, string $header_html, string $footer_html, string $body_html):string {
+    $css_modify_time = filemtime('../style.css');
     return "
 <!DOCTYPE html>
 <html lang='ru'>
@@ -9,7 +9,7 @@ function render_page(string $title, string $header_html, string $footer_html, st
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no,'>
     <title>$title – Well Skin</title>
-    <link rel='stylesheet' type='text/css' href='/style.css'/>
+    <link rel='stylesheet' type='text/css' href='/style.css?$css_modify_time'/>
     <meta name='description' content='Анализ и сраванение составов косметики'>
     <link href='/img/favicon-white.png' rel='shortcut icon' type='image/png'>
 </head>
