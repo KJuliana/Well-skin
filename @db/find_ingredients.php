@@ -9,7 +9,7 @@ function find_ingredients($ingredient_list, mysqli $db): array {
             continue;
         }
 
-        $sql = "SELECT id, name, synonyms, description, score FROM ingredients WHERE (name LIKE '%$search_text%') OR (synonyms LIKE '%$search_text%')";
+        $sql = "SELECT id, name, synonyms, description, score FROM ingredients WHERE (name LIKE '%$search_text%') OR (synonyms LIKE '%$search_text%') OR (description LIKE '%$search_text%')";
         $result = $db->query($sql);
         $query_result = [];
 

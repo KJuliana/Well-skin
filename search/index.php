@@ -13,7 +13,7 @@ $search_text = trim($_GET['search_text']);
 
 function search($search_text, mysqli $db): array {
     $found_list = [];// база с ингридиентами 1
-    $sql = "SELECT id, name, description FROM ingredients WHERE (name LIKE '%$search_text%') OR (synonyms LIKE '%$search_text%')";
+    $sql = "SELECT id, name, description FROM ingredients WHERE (name LIKE '%$search_text%') OR (synonyms LIKE '%$search_text%') OR (description LIKE '%$search_text%')";
     $result = $db->query($sql);
     $query_result = [];
 
