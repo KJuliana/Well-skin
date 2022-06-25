@@ -608,6 +608,13 @@ a {
     width: 90%;
 }
 
+@media(max-width:767px) {
+    .table_concern{
+        width: 100%;
+        padding: 0;
+    }
+}
+
 .table_concern td {
     padding: 0.5rem;
 }
