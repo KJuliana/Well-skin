@@ -85,9 +85,9 @@ function render_refs($refs): string {
     $html='';
     $array_refs =explode(PHP_EOL, $refs);
     foreach ( $array_refs as  $ref) {
-        $html .= '<li>' . $ref . ' </li>';
+        $html .= '<li  class="ingredient-card__about__item"> ' . $ref . ' </li>';
     }
-    return '<ol class="ingredient-card__about__list">'. $html .' <li class="ingredient-card__about__item"> Изображение: PubChem </li> </ol>';
+    return '<ol class="ingredient-card__about__list">'. $html .' <li class="ingredient-card__about__text__item"> Изображение: PubChem </li> </ol>';
 }
 // Получаем информацию об ингредиенте
 $db = db();

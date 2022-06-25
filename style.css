@@ -14,6 +14,7 @@
 
     --page-offset-x: 1.5rem;
     --header-height: 3.5rem;
+    --font-bold: 450;
 }
 
 *, *:before, *:after {
@@ -622,12 +623,13 @@ a {
 }
 
 .table_concern th {
+    font-weight: 400;
     padding: 0.25rem;
     text-align: start;
 }
 
 .ingredient-card__about__text{
-    margin: 0.75em auto 0;
+    margin: 0.75em auto ;
 }
 
 @media(max-width:767px) {
@@ -638,12 +640,12 @@ a {
 
 .ingredient-card__about__header{
     margin: 0.75em auto 0;
-    font-weight: bolder;
+    font-weight: 400;
 }
 
 @media(max-width:767px) {
     .ingredient-card__about__header {
-        font-weight: bolder;
+        font-weight: 400;
         margin: 0.5em auto;
     }
 }
@@ -658,7 +660,9 @@ a {
     }
 }
 
-
+.ingredient-card__about__item{
+    margin: 0.5em auto;
+}
 
 
 
