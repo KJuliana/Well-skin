@@ -584,3 +584,10 @@ a {
     background: #f5f5f5;
     aspect-ratio: 1;
 }
+
+.table_concern{
+    color: inherit;
+    font: inherit;
+    border-top: 1px solid var(--border-color) ;
+    border-bottom: 1px solid var(--border-color) ;
+}

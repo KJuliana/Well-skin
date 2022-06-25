@@ -14,9 +14,9 @@ if (!isset($_GET['ing'])){
 $ing = htmlspecialchars($_GET['ing']);
 
 //функция, которая получает данные
-#[ArrayShape(['name' => "string", 'image' => "string", 'full_description' => "string", 'cosing_inci' => "string", 'cosing_description' => "string", 'cosing_cas' => "string", 'cosing_es' => "string", 'cosing_functions' => "string"])]
+#[ArrayShape(['name' => "string", 'image' => "string", 'refs' => "string", 'full_description' => "string", 'cosing_inci' => "string", 'cosing_description' => "string", 'cosing_cas' => "string", 'cosing_es' => "string", 'cosing_functions' => "string"])]
 function get_information_about_ingredient($id, mysqli $db) {
-    $sql = " SELECT i.name, i.image, c.inci, c.description, c.cas, c.es, c.functions, c.id  ,i.full_description FROM ingredients AS i  
+    $sql = " SELECT i.id, i.name, i.image, i.refs, c.inci, c.description, c.cas, c.es, c.functions, c.id as cosing_id  ,i.full_description FROM ingredients AS i  
                 LEFT OUTER JOIN cosing AS c    
                 ON i.cosing = c.id                                                                        
              WHERE i.id = '$id'";
@@ -24,7 +24,7 @@ function get_information_about_ingredient($id, mysqli $db) {
     $result = $db->query($sql);
     $row = mysqli_fetch_assoc($result);
 
-    $cosing_id = $row['id'];
+    $cosing_id = $row['cosing_id'];
     $sql_function = "SELECT functions.name FROM con_f_c
                         RIGHT OUTER JOIN functions
                         ON functions.id = con_f_c.fun
@@ -40,18 +40,55 @@ function get_information_about_ingredient($id, mysqli $db) {
         array_push($functions, trim($function['name']));
     }
 
+    $ingredient_id= $row['id'];
+    $sql_concerns = "SELECT concerns.ru_name, concern_levels.name FROM concerns
+                        RIGHT OUTER JOIN ingredient_concerns
+                        ON ingredient_concerns.concern = concerns.id
+                        LEFT OUTER JOIN concern_levels  
+                        ON ingredient_concerns.level = concern_levels.id                                   
+                     WHERE ingredient_concerns.ingredient = '$ingredient_id'";
+    $result_concerns = $db->query($sql_concerns);
+
+    $concerns = [];
+    while ($concern = mysqli_fetch_assoc($result_concerns)) {
+        array_push($concerns, [
+            'level' => trim($concern['name']),
+            'name' => trim($concern['ru_name']),
+        ]);
+    }
+
+
     return [
         'name' => $row['name'],
         'image' => $row['image'],
+        'refs' => $row['refs'],
         'full_description' => trim($row['full_description']),
         'cosing_inci' => trim($row['inci']) ?: '–',
         'cosing_description' => trim($row['description']) ?: '–',
         'cosing_cas' => trim($row['cas']) ?: '–',
         'cosing_es' => trim($row['es']) ?: '–',
         'cosing_functions' => count($functions)>0 ? implode(', ', $functions) : '–',
+        'concerns'=> $concerns,
     ];
 }
 
+function render_concerns($concerns): string {
+    $html='<table class="table_concern">';
+    foreach ($concerns as $concern){
+        $html.= '<tr><td>'. $concern['name']. '</td><td>'. $concern['level'].'</td></tr>';
+    }
+    return $html.'</table>';
+}
+
+function render_refs($refs): string {
+    $html='';
+    $array_refs =explode(PHP_EOL, $refs);
+    foreach ( $array_refs as  $ref){
+        $html.= '<li>'. $ref. ' </li>';
+    }
+    $html_list = '<ol>'. $html .'</ol>';
+    return $html_list;
+}
 // Получаем информацию об ингредиенте
 $db = db();
 $information = get_information_about_ingredient($ing, $db);
@@ -62,13 +99,16 @@ function render_list($ingredient): string {
     return '
         <div class = "ingredient-card__about">
         <p class="intro__text">'. $ingredient['full_description'] .'</p>
+        <p class="intro__text">'. render_concerns($ingredient['concerns']) .'</p>
         <p class="intro__text">Официальная информация COSING</p>
         <p class="intro__text"> INCI name: '. $ingredient['cosing_inci'] .'</p>
         <p class="intro__text"> All Functions: '. $ingredient['cosing_functions'] .'</p>
         <p class="intro__text"> Description: '. $ingredient['cosing_description'] .'</p>
         <p class="intro__text"> CAS #: '. $ingredient['cosing_cas'] .'</p>
         <p class="intro__text"> EC #: '. $ingredient['cosing_es'] .'</p>
-        <p class="intro__text">Источник изображения: PubChem </p>
+        <p class="intro__text"> Источники:</p>
+        <p class="intro__text">'. render_refs($ingredient['refs']) .'</p>
+        <p class="intro__text"> Изображение: PubChem </p>
         </div>
         <img class = "ingredient_image" alt  src="' . $ingredient['image'] . '">
     ';
