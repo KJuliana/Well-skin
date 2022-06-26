@@ -1,6 +1,5 @@
 :root {
     --pink: hsla(350, 80%, 96%, 1);
-
     --border-color: hsla(355, 0%, 0%, 0.1);
     --text-color: hsla(355, 5%, 30%, 1);
     --text-color-hard: hsla(355, 15%, 15%, 1);
@@ -337,7 +336,6 @@ a {
 
 .comparison__separator {
     flex: none;
-    border-right: 1px solid var(--border-color);
     border-right: 2px solid hsla(355, 0%, 0%, 0.03);
     position: relative;
 }
@@ -441,26 +439,61 @@ a {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin: 1rem auto;
+    margin: 0.25rem auto;
+    padding: 1rem;
+    border-bottom: 2px solid hsla(355, 0%, 0%, 0.03);
+    border-top: 2px solid hsla(355, 0%, 0%, 0.03);
 }
 
-.total__count {
+.total__item {
     /*outline: 1px solid darkblue;*/
 }
 
-.total__count:first-child {
-    text-align: end;
+.total__item:first-child {
+    /*text-align: end;*/
     transform: translateX(50%);
 }
 
-.total__count:last-child {
-    text-align: start;
+.total__item:last-child {
+    /*text-align: start;*/
     transform: translateX(-50%);
 }
 
 .total__label {
     flex: 0 1 50%;
     text-align: center;
+}
+
+.total__count{
+    text-align: center;
+}
+
+.total__scores{
+    padding: 1.5em;
+}
+
+.total__score{
+    margin: 1em;
+}
+
+.total__score-text{
+    background: linear-gradient(var(--accent-color), hsl(330, 97%, 64%));
+    color: var(--pink);
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1;
+    min-width: 1em;
+    text-align: center;
+    border-radius: 1em;
+    padding: 0.3em;
+    box-sizing: content-box;
+}
+
+.total__count-text{
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: 400;
 }
 
 .ingredient {
@@ -514,24 +547,7 @@ a {
     display: inline-block;
     font-weight: 500;
     margin: 0 auto;
-    padding: 0.25rem 0.5rem;
-}
-
-.result-list__item {
-    margin-bottom: 0.5rem;
-}
-
-.count{
-    margin-block-start: 0;
-    color: #210033;
-    text-align: center;
-}
-
-.count {
-    display: flex;
-    align-items: center;
-    width: 50%;
-    justify-content: space-between;
+    padding: 0.5rem 0.5rem;
 }
 
 .result-list__item {

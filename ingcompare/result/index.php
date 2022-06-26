@@ -50,11 +50,36 @@ function render_list($ingredients): string {
                 </div>    
                 <div class='ingredient__score'>" . $ingredient['score'] . "</div>
             </li>";
-
     }
-
     return $html;
 }
+
+function calculate_score($ingredients): array
+{
+    $scores = [];
+    foreach ($ingredients as $ingredient) {
+        $scores[]= $ingredient['score'];
+    }
+    return array_count_values($scores);
+}
+
+$total_score1 = calculate_score($source1);
+$total_score2 = calculate_score($source2);
+
+function render_scores($score_array): string
+{
+    $html = "<div class='total__scores'>";
+    foreach ($score_array as $score => $count) {
+        $html.= "<p class='total__score'>
+                    <span class = 'total__score-text'>$score</span>
+                    <span class = 'total__count-text'>✖️ $count</span>
+                 </p> ";
+    }
+    return $html."</div>";
+}
+
+$html_score1 = render_scores($total_score1);
+$html_score2 = render_scores($total_score2);
 
 // html для списка ингридиентов
 $html_list_1 = render_list($source1);
@@ -79,9 +104,17 @@ $body = (
     </div>
 
     <div class='total'>
-        <div class='total__count'>" . count($search_list1) . "</div>
+        <div class='total__item'>
+            <div class='total__count'>" . count($search_list1) . " </div>".
+            $html_score1."
+        </div>
+        
         <div class='total__label'>Всего ингридиентов</div>
-        <div class='total__count'>" . count($search_list2) . "</div>
+        
+        <div class='total__item'>
+            <div class='total__count'>" . count($search_list2) . " </div>".
+            $html_score2."
+        </div>
     </div>
 
     <div class='comparison'>
@@ -94,7 +127,7 @@ $body = (
         <div class='comparison__item'>
             <ol class='result-list'>$html_list_2</ol>
         </div>
-    </div>
+    </div> 
 </div>"
 );
 

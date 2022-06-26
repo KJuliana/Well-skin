@@ -28,7 +28,7 @@ function find_ingredients($ingredient_list, mysqli $db): array {
             $ingredient = [
                 'name' => $search_text,
                 'description' => 'Не распознано😣',
-                'score' => '👽'
+                'score' => '?'
             ];
             $query_result[] = $ingredient;
         }
