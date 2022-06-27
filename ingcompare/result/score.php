@@ -36,10 +36,10 @@ function compare_score($a, $b) {
         return 1;
     }
 
-    $a = preg_replace('/\d-/', '', $a);
-    $b = preg_replace('/\d-/', '', $b);
     $a = preg_replace('/(\d\()|(\))/', '', $a);
     $b = preg_replace('/(\d\()|(\))/', '', $b);
+    $a = preg_replace('/\d-/', '', $a);
+    $b = preg_replace('/\d-/', '', $b);
 
     return strcasecmp($a, $b) * -1;
 }
