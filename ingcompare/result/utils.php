@@ -9,3 +9,4 @@ function parse_input(string $input) {
 
     return $array;
 }
+
