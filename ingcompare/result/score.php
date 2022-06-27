@@ -32,9 +32,8 @@ function get_score_class($score): string {
 }
 
 function compare_score($a, $b) {
-    if (stristr($a, '?')) {
-        return 1;
-    }
+    if (strpos($a, '?') !== false) return 1;
+    if (strpos($b, '?') !== false) return -1;
 
     $a = preg_replace('/(\d\()|(\))/', '', $a);
     $b = preg_replace('/(\d\()|(\))/', '', $b);
