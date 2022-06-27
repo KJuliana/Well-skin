@@ -17,10 +17,10 @@ function find_ingredients($ingredient_list, mysqli $db): array {
             // вывод данных для каждой строки
             while ($row = mysqli_fetch_assoc($result)) {
                 $ingredient = [
-                    'id' =>$row['id'],
-                    'name' => $row['name'],
-                    'description' => $row['description'],
-                    'score' => $row['score']
+                    'id' => $row['id'],
+                    'name' => trim($row['name']),
+                    'description' => trim($row['description']),
+                    'score' => trim($row['score'])
                 ];
                 $query_result[] = $ingredient;
             }
