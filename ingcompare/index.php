@@ -28,7 +28,7 @@ $body = (
                     name='list1'
                     required
                     spellcheck='false'
-                    placeholder='Water, Glycerin, Mineral oil, sunflower seed oil, Behenyl alcohol, Sucrose stearate, canola oil, hydroxyethyl acrylate/sodium acryloyldimethyl taurate copolymer, pentylene glycol, beta-sitosterol, xylitol, zinc gluconate, acrylates/c10-30 alkyl acrylate crosspolymer, palmitamide mea, 1,2-hexanediol, caprylyl glycol, sodium citrate, mannitol, rhamnose, sodium lauroyl lactylate, sodium hydroxide, polysorbate 60, sorbitan isostearate, tocopherol, phytosphingosine, ceramide np, ethylhexylglycerin, ceramide ap, cholesterol, carbomer, xanthan gum, fructooligosaccharides, caprylic/ capric triglyceride, Laminaria ochroleuca extract, Citric acid, Ceramide eop'
+                    placeholder='Water, Glycerin, Mineral oil,...'
                 ></textarea>
             </div>
 
@@ -44,7 +44,7 @@ $body = (
                     name='list2'
                     required
                     spellcheck='false'
-                    placeholder='aqua/water/eau, paraffinum liquidum/mineral oil/huile minerale, glycerin, brassica campestris (rapeseed) seed oil, sodium polyacrylate, pentylene glycol, cetearyl alcohol, 1,2 hexanediol, caprylyl glycol...'
+                    placeholder='Aqua...'
                 ></textarea>
             </div>
         </div>

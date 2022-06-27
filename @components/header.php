@@ -1,26 +1,26 @@
 <?php
-
 $links = [
     '/ingcompare' => 'Сравнение составов',
     '/about' => 'О проекте',
     '/contacts' => 'Обратная связь',
-]; // Объявление ассоциативного массива
+];
 
-function render_nav_link(string $url, string $name, bool $is_current) {
+// Объявление функции, которая возвращает HTML строку с ссылкой, если она активна или со спаном, если мы находимся на этом url уже
+function render_nav_link(string $url, string $name, bool $is_current): string {
     if ($is_current) {
         return "<span class='nav__link nav__link--active'>$name</span>";
     }
     return "<a class='nav__link link' href='$url'>$name</a>";
-} // Объявление функции, которая возвращает HTML строку с ссылкой, если она активна или со спаном, если мы находимся на этом url уже
+}
 
-function render_header(string $current_url) {  // Функция, которая выводит весь header в HTML
+// Перебираем каждый элемент массива и с каждой итерацией добавляем в пустую строку $nav_links_html элемент <a>
+function render_header(string $current_url): string {  // Функция, которая выводит весь header в HTML
     $nav_links_html = "";
 
     global $links; //Добавляем для использования глобальную версию массива
     foreach ($links as $url => $name) {
         $nav_links_html .= render_nav_link($url, $name, $url === $current_url);
-    } // Перебираем каждый элемент массива и с каждой итерацией добавляем в пустую строку $nav_links_html элемент <a>
-
+    }
 
     $search_text = $_GET['search_text'] ?? '';
 

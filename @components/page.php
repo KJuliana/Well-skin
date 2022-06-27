@@ -1,6 +1,6 @@
 <?php
-function render_page(string $title, string $header_html, string $footer_html, string $body_html):string {
-    $css_modify_time = filemtime($_SERVER['DOCUMENT_ROOT'].'/style.css');
+function render_page(string $title, string $header_html, string $footer_html, string $body_html): string {
+    $css_modify_time = filemtime($_SERVER['DOCUMENT_ROOT'] . '/style.css'); // для сброса кеша при изменении стилей
     return "
 <!DOCTYPE html>
 <html lang='ru'>
