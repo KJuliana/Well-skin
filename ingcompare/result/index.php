@@ -44,12 +44,14 @@ function render_list($ingredients): string {
         }
 
         $html = $html . "
-            <li class='result-list__item ingredient $prefix'>
-                <div class='ingredient__text'>
-                    $name
-                    <span class='ingredient__description'>" . $ingredient['description'] . "</span>
-                </div>    
-                <div class='ingredient__score score " . get_score_class($ingredient['score']) . " '>" . $ingredient['score'] . "</div>
+            <li class='result-list__item $prefix'>
+                <div class='ingredient'>
+                    <div class='ingredient__text'>
+                        $name
+                        <span class='ingredient__description'>" . $ingredient['description'] . "</span>
+                    </div>    
+                    <div class='ingredient__score score " . get_score_class($ingredient['score']) . " '>" . $ingredient['score'] . "</div>
+                </div>
             </li>";
     }
     return $html;
