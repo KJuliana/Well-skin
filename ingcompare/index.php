@@ -19,8 +19,8 @@ $body = (
 
 <section class='page__form'>
     <form class='form' action='/ingcompare/result/' method='get'>
-        <div class='comparison'>
-            <div class='comparison__item'>
+        <div class='columns'>
+            <div class='columns__item'>
                 <input class='input__text' name='name1' type='text' placeholder='Средство 1'/>
                 <textarea
                     class='textarea'
@@ -32,11 +32,11 @@ $body = (
                 ></textarea>
             </div>
 
-            <div class='comparison__separator'>
+            <div class='columns__separator'>
                 <div class='comparison__vs'>vs</div>
             </div>
 
-            <div class='comparison__item'>
+            <div class='columns__item'>
                 <input class='input__text' name='name2' type='text' placeholder='Средство 2'/>
                 <textarea
                     class='textarea'
