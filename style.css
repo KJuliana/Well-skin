@@ -328,13 +328,13 @@ a {
     z-index: 1;
 }
 
-.comparison {
+.colomns {
     display: flex;
     flex: 1 1 auto;
     gap: 2rem;
 }
 
-.comparison__separator {
+.colomns__separator {
     flex: none;
     border-right: 2px solid hsla(355, 0%, 0%, 0.03);
     position: relative;
@@ -352,7 +352,7 @@ a {
     user-select: none;
 }
 
-.comparison__item {
+.colomns__item {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -435,7 +435,7 @@ a {
 }
 
 
-.total {
+.result-count {
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -443,6 +443,7 @@ a {
     padding: 1rem;
     border-bottom: 2px solid hsla(355, 0%, 0%, 0.03);
     border-top: 2px solid hsla(355, 0%, 0%, 0.03);
+    text-align: center;
 }
 
 .total__item {
@@ -460,31 +461,41 @@ a {
 }
 
 .total__label {
-    flex: 0 1 50%;
+    flex: 0 0 50%;
     text-align: center;
 }
 
-.total__count{
-    text-align: center;
+.result__score{
+    display: flex;
+    gap: 2rem;
+
 }
 
 .total__scores{
+    display: flex;
     padding: 1.5em;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .total__score{
-    margin: 1em;
+    margin: 0.4em;
+    font-size: 0.9rem;
 }
 
 .total__score-text{
-    background: linear-gradient(var(--accent-color), hsl(330, 97%, 64%));
-    color: var(--pink);
+}
+
+.score{
+    background: hsla(330, 97%, 64%, 0.2);
+    color: #210033;
     display: inline-block;
-    font-size: 1.2rem;
     font-weight: 400;
     line-height: 1;
     min-width: 1em;
     text-align: center;
+    border: thin solid hsla(330, 97%, 64%, 0.2);
     border-radius: 1em;
     padding: 0.3em;
     box-sizing: content-box;
@@ -492,8 +503,7 @@ a {
 
 .total__count-text{
     display: inline-block;
-    font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .ingredient {
@@ -502,6 +512,10 @@ a {
 .ingredient__description {
     color: var(--text-color-muted);
     font-size: 0.8rem;
+}
+
+.ingredient__score{
+    font-size: 0.9rem;
 }
 
 .page__footer {
@@ -560,6 +574,7 @@ a {
 .ingredient {
     display: flex;
     text-align: center;
+    align-items: center;
 }
 .ingredient__text {
     display: flex;
@@ -567,16 +582,10 @@ a {
     flex-grow: 1;
 }
 
-.ingredient__score{
-}
-
 .ingredient__name {
     font-size: 15px;
     color: #210033;
     padding: 4px;
-}
-
-.founded{
 }
 
 .found-list{

@@ -48,7 +48,7 @@ function render_list($ingredients): string {
                     $name
                     <span class='ingredient__description'>" . $ingredient['description'] . "</span>
                 </div>    
-                <div class='ingredient__score'>" . $ingredient['score'] . "</div>
+                <div class='ingredient__score score'>" . $ingredient['score'] . "</div>
             </li>";
     }
     return $html;
@@ -68,11 +68,11 @@ $total_score2 = calculate_score($source2);
 
 function render_scores($score_array): string
 {
-    $html = "<div class='total__scores'>";
+    $html = "<div class='colomns__item total__scores'>";
     foreach ($score_array as $score => $count) {
-        $html.= "<p class='total__score'>
-                    <span class = 'total__score-text'>$score</span>
-                    <span class = 'total__count-text'>✖️ $count</span>
+        $html.= "<p class='total__score'>                    
+                    <span class = 'total__score-text score'>$score</span>
+                    <span class = 'total__count-text'>×  $count</span>
                  </p> ";
     }
     return $html."</div>";
@@ -91,40 +91,38 @@ $title = "Результат сравнения";
 
 $body = (
     "<div class='result'>
-    <div class='comparison comparison--names'>
-        <div class='comparison__item'>
+    <div class='colomns comparison--names'>
+        <div class='colomns__item'>
             <div class='result__name'>$name1</div>
         </div>
 
-        <div class='comparison__separator'></div>
+        <div class='colomns__separator'></div>
 
-        <div class='comparison__item'>
+        <div class='colomns__item'>
             <div class='result__name'>$name2</div>
         </div>
     </div>
 
-    <div class='total'>
-        <div class='total__item'>
-            <div class='total__count'>" . count($search_list1) . " </div>".
-            $html_score1."
-        </div>
-        
-        <div class='total__label'>Всего ингридиентов</div>
-        
-        <div class='total__item'>
-            <div class='total__count'>" . count($search_list2) . " </div>".
-            $html_score2."
-        </div>
+    <div class=' colomns result-count'>
+            <div class='total__count-text'>" . count($search_list1) . " </div>
+            <div class='total__label'>Всего ингридиентов</div>
+            <div class='total__count-text'>" . count($search_list2) . " </div>
     </div>
 
-    <div class='comparison'>
-        <div class='comparison__item'>
+    <div class='colomns'>
+            ". $html_score1 . "
+            <div class='colomns__separator'></div>
+            " . $html_score2 . "
+    </div> 
+    
+    <div class='colomns'>
+        <div class='colomns__item'>
             <ol class='result-list'>$html_list_1</ol>
         </div>
 
-        <div class='comparison__separator'></div>
+        <div class='colomns__separator'></div>
 
-        <div class='comparison__item'>
+        <div class='colomns__item'>
             <ol class='result-list'>$html_list_2</ol>
         </div>
     </div> 
