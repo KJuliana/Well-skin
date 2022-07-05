@@ -51,6 +51,11 @@ p {
     min-height: 100%;
 }
 
+.page--main {
+    background: #f6f6f6 url('/img/bg3.webp') no-repeat bottom right;
+    background-size: min(75rem, 100vw);
+}
+
 body {
     background: #fff;
     height: 100%;
@@ -64,12 +69,16 @@ a {
 .page__header {
     --color: hsla(355, 50%, 20%, 0.1);
 
-    background: hsla(350, 0%, 98%, 1);
+    background: hsla(0, 0%, 96%, 1);
     left: 0;
     position: fixed;
     right: 0;
     top: 0;
     z-index: 2;
+}
+
+.page--main .page__header {
+    background: none;
 }
 
 .header {
@@ -302,6 +311,13 @@ a {
     margin: 0 auto;
     max-width: var(--max-content-width);
     padding: calc(var(--header-height) + 1rem) var(--page-offset-x) 2rem;
+}
+
+.page--main .page__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 15vh;
 }
 
 .page__title {
@@ -546,6 +562,10 @@ a {
     font-size: 0.85rem;
 }
 
+.page--main .page__footer {
+    background: hsla(0, 0%, 100%, 0.5);
+}
+
 .footer {
     align-items: center;
     display: flex;
@@ -713,5 +733,49 @@ a {
     margin: 0.5em auto;
 }
 
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.main__intro {
+    display: flex;
+    justify-content: center;
+    gap: 3em;
+    padding: 2em;
+}
 
+.main__text {
+    font-size: 1.4em;
+}
+
+.main__button {
+    background: linear-gradient(to right, hsl(320deg 95% 70%), hsl(340deg 95% 65%));
+    color: #fffcff;
+    border: none;
+    border-radius: 2em;
+    box-shadow: 1px 1px 10px -3px #cc54b8;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 1rem 1.5rem;
+    margin: 2rem;
+    transition: transform 0.05s ease-out, filter 0.05s ease-out, box-shadow 0.05s ease-out;
+    user-select: none;
+}
+
+.main__button:hover {
+    box-shadow: 1px 1px 10px -2px #cc54b8;
+    filter: saturate(1.3);
+    transform: scale(1.02);
+}
+
+.main__button:active {
+    box-shadow: 1px 1px 10px -10px #cc54b8;
+    filter: brightness(0.95);
+    transform: scale(0.98);
+}

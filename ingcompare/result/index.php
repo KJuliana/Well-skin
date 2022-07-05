@@ -26,8 +26,8 @@ $search_list2 = parse_input($list2);
 
 // Получаем итоговый список ингредиентов
 $db = db();
-$source1 = find_ingredients($search_list1, $db);
-$source2 = find_ingredients($search_list2, $db);
+$ingredients1 = find_ingredients($search_list1, $db);
+$ingredients2 = find_ingredients($search_list2, $db);
 $db->close();
 
 function render_list($ingredients): string {
@@ -58,15 +58,15 @@ function render_list($ingredients): string {
 }
 
 
-$total_score1 = calculate_score($source1);
-$total_score2 = calculate_score($source2);
+$score_counts1 = calculate_score_counts($ingredients1);
+$score_counts2 = calculate_score_counts($ingredients2);
 
-$html_score1 = render_scores($total_score1);
-$html_score2 = render_scores($total_score2);
+$html_score1 = render_scores($score_counts1);
+$html_score2 = render_scores($score_counts2);
 
 // html для списка ингридиентов
-$html_list_1 = render_list($source1);
-$html_list_2 = render_list($source2);
+$html_list_1 = render_list($ingredients1);
+$html_list_2 = render_list($ingredients2);
 
 $header = render_header('/ingcompare/result');
 $footer = render_footer();

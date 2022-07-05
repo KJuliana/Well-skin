@@ -1,6 +1,6 @@
 <?php
 
-function calculate_score($ingredients): array {
+function calculate_score_counts($ingredients): array {
     $scores = [];
     foreach ($ingredients as $ingredient) {
         $scores[] = $ingredient['score'];

@@ -10,7 +10,7 @@ $title = "О проекте";
 
 $body = "
 <section class='intro'>
-    <p class='intro__text'>Вот такой вот проект</p>
+    <p class='intro__text'>Данный проект реализован с целью повышения доступности и популяризации научного подхода при выборе косметических средств.</p>
 </section>";
 
 echo render_page($title, $header, $footer, $body);

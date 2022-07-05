@@ -1,5 +1,5 @@
 <?php
-function render_page(string $title, string $header_html, string $footer_html, string $body_html): string {
+function render_page(string $title, string $header_html, string $footer_html, string $body_html, string $page_class = ""): string {
     $css_modify_time = filemtime($_SERVER['DOCUMENT_ROOT'] . '/style.css'); // для сброса кеша при изменении стилей
     return "
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ function render_page(string $title, string $header_html, string $footer_html, st
 
 <body>
 
-<div class='page'>
+<div class='page $page_class'>
     <div class='page__header'>$header_html</div>
 
     <main class='page__content'>

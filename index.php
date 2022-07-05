@@ -9,8 +9,13 @@ $footer = render_footer();
 $title = "Анализ и сравнение составов косметики";
 
 $body = "
-<section class='intro'>
-    <p class='intro__text'>Вот так вот оно работает</p>
-</section>";
+<section class='main'>
+    <div class='main__intro'>
+        <p class='main__text'>Вот так вот оно работает</p>
+    </div>
+    <a class='main__button' href='/ingcompare'>Перейти к сравнению →</a> 
+</section> 
 
-echo render_page($title, $header, $footer, $body);
+";
+
+echo render_page($title, $header, $footer, $body, "page--main");
