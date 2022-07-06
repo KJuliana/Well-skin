@@ -13,7 +13,7 @@ function render_footer(): string { // Возвращаем строку html с 
 
     $links_html = "";
     foreach ($footer_links as $url => $name) {
-        $links_html .= "<a class='footer__link link' href='$url'>$name</a>";
+        $links_html .= "<a class='footer__link' href='$url'>$name</a>";
     }
 
     return "

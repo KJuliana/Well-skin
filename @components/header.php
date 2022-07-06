@@ -10,7 +10,7 @@ function render_nav_link(string $url, string $name, bool $is_current): string {
     if ($is_current) {
         return "<span class='nav__link nav__link--active'>$name</span>";
     }
-    return "<a class='nav__link link' href='$url'>$name</a>";
+    return "<a class='nav__link' href='$url'>$name</a>";
 }
 
 // Перебираем каждый элемент массива и с каждой итерацией добавляем в пустую строку $nav_links_html элемент <a>

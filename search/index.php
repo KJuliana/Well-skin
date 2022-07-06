@@ -47,7 +47,7 @@ function render_search($found_list): string {
     foreach ($found_list as $found_item) {
         $html = $html . "
             <li class='found-item'>
-                <a class='found-item__name' href='/ingredient/?ing=" . $found_item['id'] . "'>" . $found_item['name'] . "</a>
+                <a class='found-item__name link' href='/ingredient/?ing=" . $found_item['id'] . "'>" . $found_item['name'] . "</a>
                 <span class='found-item__description'>" . $found_item['description'] . "</span>
             </li>";
 

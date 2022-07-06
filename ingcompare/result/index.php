@@ -36,7 +36,7 @@ function render_list($ingredients): string {
     foreach ($ingredients as $ingredient) {
 
         if (isset($ingredient['id'])) {
-            $name = "<a class='ingredient__name' href='/ingredient/?ing=" . $ingredient['id'] . "'>" . $ingredient['name'] . "</a> ";
+            $name = "<a class='ingredient__name link' href='/ingredient/?ing=" . $ingredient['id'] . "'>" . $ingredient['name'] . "</a> ";
             $prefix = "founded";
         } else {
             $name = "<span class='ingredient__name'>" . $ingredient['name'] . "</span>";

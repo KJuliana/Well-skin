@@ -76,7 +76,7 @@ function render_concerns($concerns): string {
     $html = '<table class="table_concern"> 
                 <tr><th>Опасность</th><th>Уровень</th></tr> ';
     foreach ($concerns as $concern) {
-        $html .= '<tr><td>' . $concern['name'] . '</td><td>' . $concern['level'] . '</td></tr>';
+        $html .= '<tr><td><a href="/about" class="link">' . $concern['name'] . '</a></td><td><a href="/about" class="link">' . $concern['level'] . '</a></td></tr>';
     }
     return $html . '</table>';
 }

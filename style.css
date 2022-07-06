@@ -676,14 +676,6 @@ span.ingredient__name {
     color: var(--text-color-muted);
 }
 
-a.ingredient__name {
-    color: var(--link-color);
-}
-
-a.ingredient__name:hover {
-    color: var(--link-color-hover);
-}
-
 .found-list {
     list-style: none;
 }
@@ -697,13 +689,8 @@ a.ingredient__name:hover {
 }
 
 .found-item__name {
-    color: var(--link-color);
     font-weight: 400;
     font-size: 0.9rem;
-}
-
-.found-item__name:hover {
-    color: var(--link-color-hover);
 }
 
 
@@ -779,6 +766,16 @@ a.ingredient__name:hover {
 
 .ingredient-card__about__text {
     margin: 0.75em auto;
+}
+
+.link {
+    color: var(--link-color);
+    text-decoration: underline 3px;
+    text-decoration-color: hsl(330deg 100% 71% / 15%);
+}
+
+.link:hover {
+    color: var(--link-color-hover);
 }
 
 @media (max-width: 767px) {
