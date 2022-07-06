@@ -75,7 +75,7 @@ a {
 .page__header {
     --color: hsla(355, 50%, 20%, 0.1);
 
-    background: hsla(0, 0%, 96%, 1);
+    background: linear-gradient(hsla(0, 0%, 96%, 1), hsla(0, 0%, 96%, 1));
     left: 0;
     position: fixed;
     right: 0;
