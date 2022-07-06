@@ -110,7 +110,7 @@ function render_list($ingredient): string {
         <p class="ingredient-card__about__header"> Источники:</p>
         <p>' . render_refs($ingredient['refs']) . '</p>
         </div>
-        <img class = "ingredient_image" src="' . $ingredient['image'] . '">
+        <img class = "ingredient_image" src="' . $ingredient['image'] . '" alt="">
     ';
 }
 
