@@ -24,7 +24,7 @@ function render_header(string $current_url): string {  // Функция, кот
 
     $search_text = $_GET['search_text'] ?? '';
 
-    return " 
+    return "
 <header class='header'>
     <a class='logo' href='/' aria-label='Главная'>
         <span class='logo__common'>
@@ -33,7 +33,7 @@ function render_header(string $current_url): string {  // Функция, кот
         <span class='logo__description'>Анализ и сравнение косметики</span>
     </a>
    
-    <button id='burger' class='header__burger'>
+    <button id='burger' class='header__burger' aria-hidden='true' tabindex='-1'>
         <span></span>
     </button>
 

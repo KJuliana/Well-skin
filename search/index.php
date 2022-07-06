@@ -5,15 +5,18 @@ require_once('../@components/header.php');
 require_once('../@components/page.php');
 require_once('../@db/connect.php');
 
-//if (!isset($_GET['search_text'])) {
-//    die("Извините, идите обратно");
-//}
+if (!isset($_GET['search_text'])) {
+    die("Извините, идите обратно");
+}
 
 $search_text = trim($_GET['search_text']);
 
 function search($search_text, mysqli $db): array {
     $found_list = [];// база с ингридиентами 1
-    $sql = "SELECT id, name, description FROM ingredients WHERE (name LIKE '%$search_text%') OR (synonyms LIKE '%$search_text%') OR (description LIKE '%$search_text%')";
+    $sql = "SELECT id, name, description FROM ingredients
+             WHERE (name LIKE '%$search_text%')
+                OR (synonyms LIKE '%$search_text%')
+                OR (description LIKE '%$search_text%')";
     $result = $db->query($sql);
     $query_result = [];
 
@@ -34,8 +37,8 @@ function search($search_text, mysqli $db): array {
     return $found_list;
 }
 
-$db=db();
-$found_list = search($search_text,$db);
+$db = db();
+$found_list = search($search_text, $db);
 $db->close();
 
 function render_search($found_list): string {
@@ -44,8 +47,8 @@ function render_search($found_list): string {
     foreach ($found_list as $found_item) {
         $html = $html . "
             <li class='found-item'>
-                    <a class='found-item__name' href='/ingredient/?ing=" . $found_item['id'] . "'>" . $found_item['name'] . "</a>
-                    <span class='found-item__description'>" . $found_item['description'] . "</span>
+                <a class='found-item__name' href='/ingredient/?ing=" . $found_item['id'] . "'>" . $found_item['name'] . "</a>
+                <span class='found-item__description'>" . $found_item['description'] . "</span>
             </li>";
 
     }
@@ -59,11 +62,9 @@ $footer = render_footer();
 $title = "Результат поиска";
 
 $body = (
-    "<div class='result'>
-        <div class='comparison__item'>
-            <ul class='found-list'>$found_html</ul>
-        </div>
-    </div>"
+"<div class='result'>
+    <ul class='found-list'>$found_html</ul>
+</div>"
 );
 
 echo render_page($title, $header, $footer, $body);

@@ -72,8 +72,7 @@ $header = render_header('/ingcompare/result');
 $footer = render_footer();
 $title = "Результат сравнения";
 
-$body = (
-    "<div class='result'>
+$body = "
     <div class='columns comparison--names'>
         <div class='columns__item'>
             <div class='result__name'>$name1</div>
@@ -109,7 +108,6 @@ $body = (
             <ol class='result-list'>$html_list_2</ol>
         </div>
     </div> 
-</div>"
-);
+";
 
 echo render_page($title, $header, $footer, $body);

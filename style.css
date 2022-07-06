@@ -3,10 +3,10 @@
     --border-color: hsla(355, 0%, 0%, 0.1);
     --text-color: hsla(355, 5%, 30%, 1);
     --text-color-hard: hsla(355, 15%, 15%, 1);
-    --text-color-muted: hsla(355, 20%, 20%, 0.45);
+    --text-color-muted: hsla(0, 0%, 0%, 0.55);
+    /*--accent-color: hsl(330, 100%, 62%);*/
     --accent-color: hsl(330, 100%, 71%);
-
-    --link-color: hsla(355, 78%, 60%, 0.86);
+    --link-color: hsl(330deg 54% 16%);
     --link-color-hover: deeppink;
 
     --max-content-width: 60rem;
@@ -28,6 +28,8 @@ html {
     font-weight: 300;
     line-height: 1.5;
     height: 100%;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body,
@@ -43,6 +45,10 @@ p {
     color: inherit;
     font: inherit;
     margin: 0;
+}
+
+a, button {
+    touch-action: auto;
 }
 
 .page {
@@ -91,6 +97,7 @@ a {
     padding: 0 var(--page-offset-x);
     width: 100%;
     gap: 2rem;
+    touch-action: none;
 }
 
 .logo {
@@ -129,11 +136,13 @@ a {
 }
 
 .logo__description {
-    background: var(--accent-color);
+    background: linear-gradient(var(--accent-color), var(--accent-color));
     color: white;
     margin-block-start: 0.5em;
-    font-size: 0.7em;
+    font-size: 0.74em;
+    font-weight: 400;
     padding: 0.25em 0;
+    letter-spacing: -0.05em;
     text-align: center;
     text-transform: uppercase;
 }
@@ -142,7 +151,7 @@ a {
     display: flex;
     flex-wrap: nowrap;
     background: white;
-    padding: 0 0.5rem;
+    /*border: thin solid var(--border-color);*/
     border-radius: 0.25rem;
 }
 
@@ -150,6 +159,7 @@ a {
     .search {
         margin: 1.3rem;
         font-size: 1.6rem;
+        width: calc(100% - 1.3rem * 2);
     }
 }
 
@@ -158,8 +168,10 @@ a {
 }
 
 .search__input-text {
+    appearance: none;
     background: none;
     border: none;
+    padding: 0 0.5em;
     width: 100%;
     min-width: 4rem;
 }
@@ -171,6 +183,17 @@ a {
 .search__button {
     background: none;
     border: none;
+    cursor: pointer;
+    font: inherit;
+    transition: transform 0.05s ease-out;
+}
+
+.search__button:hover {
+    transform: scale(1.05);
+}
+
+.search__button:active {
+    transform: scale(0.95);
 }
 
 .nav {
@@ -194,7 +217,7 @@ a {
         background-color: hsla(0, 0%, 96%, 1);
         transition: 0.3s ease-out;
         transform: translateX(calc(var(--header-height) + 100%));
-        box-shadow: -10px 0 8px -10px;
+        box-shadow: -10px 0 8px -10px hsla(0, 0%, 0%, 0.25);
     }
 
     .nav.active {
@@ -296,7 +319,7 @@ a {
 }
 
 .header__burger.active span {
-    transform: scale(0);
+    transform: scaleX(0);
     opacity: 0;
 }
 
@@ -311,6 +334,8 @@ a {
     margin: 0 auto;
     max-width: var(--max-content-width);
     padding: calc(var(--header-height) + 1rem) var(--page-offset-x) 2rem;
+    touch-action: cross-slide-y;
+    width: 100%;
 }
 
 .page--main .page__content {
@@ -610,7 +635,8 @@ a {
 
 /*Страница сравнения*/
 .result {
-
+    margin: 0 auto;
+    max-width: 40rem;
 }
 
 .result__name {
@@ -643,12 +669,51 @@ a {
 
 .ingredient__name {
     font-size: 15px;
-    color: #210033;
     padding: 4px;
+}
+
+span.ingredient__name {
+    color: var(--text-color-muted);
+}
+
+a.ingredient__name {
+    color: var(--link-color);
+}
+
+a.ingredient__name:hover {
+    color: var(--link-color-hover);
 }
 
 .found-list {
     list-style: none;
+}
+
+.found-item {
+    padding: 0.5rem;
+}
+
+.found-item:not(:last-child) {
+    border-bottom: thin solid var(--border-color);
+}
+
+.found-item__name {
+    color: var(--link-color);
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.found-item__name:hover {
+    color: var(--link-color-hover);
+}
+
+
+.found-item__name {
+}
+
+
+.found-item__description {
+    display: block;
+    font-size: 0.8rem;
 }
 
 .ingredient-card {
@@ -757,8 +822,8 @@ a {
 .main__intro {
     display: flex;
     justify-content: center;
-    gap: 3em;
-    padding: 2em;
+    gap: 3rem;
+    padding: 2rem 0;
 }
 
 .main__text {
@@ -778,7 +843,7 @@ a {
     text-transform: uppercase;
     letter-spacing: 0.12em;
     padding: 1rem 1.5rem;
-    margin: 2rem;
+    margin: 2rem 0;
     text-align: center;
     transition: transform 0.05s ease-out, filter 0.05s ease-out, box-shadow 0.05s ease-out;
     user-select: none;
