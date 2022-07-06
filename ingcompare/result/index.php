@@ -50,7 +50,7 @@ function render_list($ingredients): string {
                         $name
                         <span class='ingredient__description'>" . $ingredient['description'] . "</span>
                     </div>    
-                    <div class='ingredient__score score " . get_score_class($ingredient['score']) . " '>" . $ingredient['score'] . "</div>
+                    <a href='/about' class='ingredient__score score " . get_score_class($ingredient['score']) . " '>" . $ingredient['score'] . "</a>
                 </div>
             </li>";
     }

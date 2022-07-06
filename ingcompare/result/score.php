@@ -59,7 +59,7 @@ function render_scores($score_array): string {
 
     foreach ($score_array as $score => $count) {
         $html .= "<p class='total__score'>                    
-                    <span class = 'total__score-text score " . get_score_class($score) . "'>$score</span>
+                    <a href='/about' class = 'total__score-text score " . get_score_class($score) . "'>$score</a>
                     <span class = 'total__count-text'>×  $count</span>
                  </p> ";
     }
