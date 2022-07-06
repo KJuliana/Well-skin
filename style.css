@@ -770,7 +770,8 @@ span.ingredient__name {
 
 .link {
     color: var(--link-color);
-    text-decoration: underline 3px;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
     text-decoration-color: hsl(330deg 100% 71% / 20%);
 }
 
