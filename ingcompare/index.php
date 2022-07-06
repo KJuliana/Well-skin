@@ -21,7 +21,7 @@ $body = (
     <form class='form' action='/ingcompare/result/' method='get'>
         <div class='columns'>
             <div class='columns__item'>
-                <input class='input__text' name='name1' type='text' placeholder='Средство 1'/>
+                <input class='input__text' name='name1' type='text' placeholder='Средство 1' autocomplete='off'/>
                 <textarea
                     class='textarea'
                     id='components_1'
@@ -37,7 +37,7 @@ $body = (
             </div>
 
             <div class='columns__item'>
-                <input class='input__text' name='name2' type='text' placeholder='Средство 2'/>
+                <input class='input__text' name='name2' type='text' placeholder='Средство 2' autocomplete='off'/>
                 <textarea
                     class='textarea'
                     id='components_2'

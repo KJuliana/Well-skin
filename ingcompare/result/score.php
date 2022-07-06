@@ -31,16 +31,25 @@ function get_score_class($score): string {
     return '';
 }
 
+function get_score_max(string $score): string {
+    return preg_replace('/\d-/', '', $score);
+}
+
+function is_score_empty(string $score): string {
+    return strpos($score, '?') !== false;
+}
+
 function compare_score($a, $b) {
-    if (strpos($a, '?') !== false) return 1;
-    if (strpos($b, '?') !== false) return -1;
+    if (is_score_empty($a)) return 1;
+    if (is_score_empty($b)) return -1;
 
-    $a = preg_replace('/(\d\()|(\))/', '', $a);
-    $b = preg_replace('/(\d\()|(\))/', '', $b);
-    $a = preg_replace('/\d-/', '', $a);
-    $b = preg_replace('/\d-/', '', $b);
+    $maxA = get_score_max($a);
+    $maxB = get_score_max($b);
 
-    return strcasecmp($a, $b) * -1;
+    if ($maxA === $maxB) {
+        return strcasecmp($a, $b) * -1;
+    }
+    return strcasecmp($maxA, $maxB) * -1;
 }
 
 function render_scores($score_array): string {
