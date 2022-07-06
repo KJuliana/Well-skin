@@ -771,13 +771,12 @@ span.ingredient__name {
 .link {
     color: var(--link-color);
     text-decoration: underline 3px;
-    /*text-decoration-color: hsl(330deg 100% 71% / 15%);*/
-    /*text-decoration-color: hsl(330deg 30% 46% / 15%);*/
-    text-decoration-color: hsl(330deg 65% 58% / 10%);
+    text-decoration-color: hsl(330deg 100% 71% / 20%);
 }
 
 .link:hover {
     color: var(--link-color-hover);
+    text-decoration: none;
 }
 
 @media (max-width: 767px) {
