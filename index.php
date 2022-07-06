@@ -11,9 +11,9 @@ $title = "Анализ и сравнение составов косметики
 $body = "
 <section class='main'>
     <div class='main__intro'>
-        <p class='main__text'>Вот так вот оно работает</p>
+        <p class='main__text'> Научная основа. Грамотный выбор.</p>
     </div>
-    <a class='main__button' href='/ingcompare'>Перейти к сравнению →</a> 
+    <a class='main__button' href='/ingcompare'>Перейти к сравнению&nbsp;→</a> 
 </section> 
 
 ";
