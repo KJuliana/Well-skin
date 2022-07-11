@@ -1,6 +1,7 @@
 :root {
     --pink: hsla(350, 80%, 96%, 1);
-    --border-color: hsla(355, 0%, 0%, 0.1);
+    --border-color: hsla(0, 0%, 0%, 0.1);
+    --border-color-light: hsla(0, 0%, 0%, 0.03);
     --text-color: hsla(355, 5%, 30%, 1);
     --text-color-hard: hsla(355, 15%, 15%, 1);
     --text-color-muted: hsla(0, 0%, 0%, 0.55);
@@ -342,7 +343,6 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-bottom: 10vh;
 }
 
 .page__title {
@@ -366,6 +366,10 @@ a {
 }
 
 .comparison--names {
+    background: #fff;
+    border-bottom: 2px solid var(--border-color-light);
+    margin: 0 calc(var(--page-offset-x) * -1);
+    padding: 0 var(--page-offset-x);
     position: sticky;
     top: var(--header-height);
     z-index: 1;
@@ -379,7 +383,7 @@ a {
 
 .columns__separator {
     flex: none;
-    border-right: 2px solid hsla(355, 0%, 0%, 0.03);
+    border-right: 2px solid var(--border-color-light);
     position: relative;
 }
 
@@ -439,6 +443,12 @@ a {
     resize: none;
 }
 
+@media (max-width: 767px) {
+    .textarea {
+        height: calc(100vh - 40rem);
+    }
+}
+
 .textarea::placeholder {
     color: var(--text-color-muted);
 }
@@ -479,13 +489,11 @@ a {
 
 
 .result-count {
-    display: flex;
+    align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin: 0.25rem auto;
-    padding: 1rem;
-    border-bottom: 2px solid hsla(355, 0%, 0%, 0.03);
-    border-top: 2px solid hsla(355, 0%, 0%, 0.03);
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--border-color-light);
     text-align: center;
 }
 
@@ -516,14 +524,13 @@ a {
 
 .total__scores {
     display: flex;
-    padding: 1.5em;
+    padding: 1.5em 0;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
 }
 
 .total__score {
-    margin: 0.4em;
     font-size: 0.9rem;
 }
 
@@ -536,6 +543,7 @@ a {
     background: var(--score-color);
     color: #210033;
     display: inline-block;
+    flex-shrink: 0;
     font-weight: 400;
     line-height: 1;
     min-width: 1em;
@@ -544,6 +552,7 @@ a {
     border-radius: 1em;
     padding: 0.3em;
     box-sizing: content-box;
+    white-space: nowrap;
 }
 
 .score--good {
@@ -570,16 +579,20 @@ a {
     font-weight: 300;
 }
 
-.ingredient {
-}
-
 .ingredient__description {
     color: var(--text-color-muted);
     font-size: 0.8rem;
 }
 
 .ingredient__score {
-    font-size: 0.9rem;
+    align-self: start;
+    margin-top: -0.1875rem;
+}
+
+@media (max-width: 767px) {
+    .ingredient__score {
+        margin-right: -1rem;
+    }
 }
 
 .page__footer {
@@ -640,25 +653,32 @@ a {
 }
 
 .result__name {
-    background: #fff;
-    border-radius: 0 0 0.5rem 0.5rem;
-    display: inline-block;
     font-weight: 500;
     margin: 0 auto;
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem;
+}
+
+.result-list {
+    margin: 0 -1.5rem;
+    padding: 0 1.5rem;
 }
 
 .result-list__item {
-    border-bottom: rgba(33, 0, 51, 0.35) dashed;
-    padding: 5px;
-    margin: 15px;
-    width: 300px;
+    font-size: 15px;
+    padding: 1rem 0;
+}
+
+.result-list__item::marker {
+}
+
+.result-list__item:not(:last-child) {
+    border-bottom: 2px solid var(--border-color-light);
 }
 
 .ingredient {
     display: flex;
-    text-align: center;
     align-items: center;
+    position: relative;
 }
 
 .ingredient__text {
@@ -668,8 +688,9 @@ a {
 }
 
 .ingredient__name {
-    font-size: 15px;
-    padding: 4px;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+    word-break: break-word;
 }
 
 span.ingredient__name {
@@ -768,6 +789,39 @@ span.ingredient__name {
     margin: 0.75em auto;
 }
 
+.function {
+    position: relative;
+}
+
+.function__name {
+    border-radius: 0.25em;
+    cursor: default;
+    position: relative;
+    white-space: nowrap;
+}
+
+.function__description {
+    position: absolute;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 2rem -0.5rem hsla(0, 0%, 0%, 0.5);
+    font-size: 0.875rem;
+    display: none;
+    bottom: 100%;
+    left: -1rem;
+    padding: 0.5rem;
+    width: calc(100% + 2rem);
+}
+
+.function:hover .function__name {
+    background: #fff5eb;
+    color: black;
+}
+
+.function:hover .function__description {
+    display: block;
+}
+
 .link {
     color: var(--link-color);
     text-decoration: underline;
@@ -820,8 +874,9 @@ span.ingredient__name {
 
 .main__intro {
     display: flex;
-    justify-content: center;
-    gap: 3rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
     padding: 2rem 0;
 }
 

@@ -25,7 +25,7 @@ function get_information_about_ingredient($id, mysqli $db) {
     $row = mysqli_fetch_assoc($result);
 
     $cosing_id = $row['cosing_id'];
-    $sql_function = "SELECT functions.name FROM con_f_c
+    $sql_function = "SELECT functions.name, functions.description FROM con_f_c
                         RIGHT OUTER JOIN functions
                         ON functions.id = con_f_c.fun
                      WHERE con_f_c.cosing = '$cosing_id'";
@@ -37,7 +37,10 @@ function get_information_about_ingredient($id, mysqli $db) {
 
     $functions = [];
     while ($function = mysqli_fetch_assoc($result_function)) {
-        $functions[] = trim($function['name']);
+        $functions[] = [
+            'name' => trim($function['name']),
+            'description' => trim($function['description']),
+        ];
     }
 
     $ingredient_id = $row['id'];
@@ -57,7 +60,6 @@ function get_information_about_ingredient($id, mysqli $db) {
         ];
     }
 
-
     return [
         'name' => $row['name'],
         'image' => $row['image'],
@@ -67,7 +69,7 @@ function get_information_about_ingredient($id, mysqli $db) {
         'cosing_description' => trim($row['description']) ?: '–',
         'cosing_cas' => trim($row['cas']) ?: '–',
         'cosing_ec' => trim($row['ec']) ?: '–',
-        'cosing_functions' => count($functions) > 0 ? implode(', ', $functions) : '–',
+        'cosing_functions' => $functions,
         'concerns' => $concerns,
     ];
 }
@@ -95,6 +97,19 @@ $db = db();
 $information = get_information_about_ingredient($ing, $db);
 $db->close();
 
+function render_function_list($functions) {
+    if (count($functions) < 1) return '–';
+    $html = '';
+    foreach ($functions as $index => $function) {
+        $separator = ($index < count($functions) - 1 ? ', ' : '');
+        $html .= "<span class='function'>
+            <span class='function__name'>" . $function['name'] . "</span>$separator
+            <span class='function__description'>" . $function['description'] . "</span>
+        </span>";
+    }
+    return $html;
+}
+
 //Функция, которая создает html
 function render_list($ingredient): string {
     return '
@@ -103,7 +118,7 @@ function render_list($ingredient): string {
         <p class="ingredient-card__about__text">' . render_concerns($ingredient['concerns']) . '</p>
         <p class="ingredient-card__about__header">Официальная информация COSING</p>
         <p class="ingredient-card__about__text"> INCI name: ' . $ingredient['cosing_inci'] . '</p>
-        <p class="ingredient-card__about__text"> All Functions: ' . $ingredient['cosing_functions'] . '</p>
+        <p class="ingredient-card__about__text"> All Functions: ' . render_function_list($ingredient['cosing_functions']) . '</p>
         <p class="ingredient-card__about__text"> Description: ' . $ingredient['cosing_description'] . '</p>
         <p class="ingredient-card__about__text"> CAS #: ' . $ingredient['cosing_cas'] . '</p>
         <p class="ingredient-card__about__text"> EC #: ' . $ingredient['cosing_ec'] . '</p>

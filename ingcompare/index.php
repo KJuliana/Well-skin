@@ -11,8 +11,8 @@ $title = "Сравнение составов";
 $body = (
 "<section class='intro'>
     <p class='intro__text'>
-        Введите составы косметики для анализа в соответсвующие поисковые поля поиска.
-        Наибольшая достоверность будет достигнута,если вы введете состав в
+        Введите составы косметики для анализа в соответствующие поисковые поля поиска.
+        Наибольшая достоверность будет достигнута, если вы введете состав в
         стандартном виде в соответствии с INCI (латинскими буквами).
     </p>
 </section>
@@ -29,6 +29,7 @@ $body = (
                     required
                     spellcheck='false'
                     placeholder='Water, Glycerin, Mineral oil,...'
+                    minlength='3'
                 ></textarea>
             </div>
 
@@ -45,6 +46,7 @@ $body = (
                     required
                     spellcheck='false'
                     placeholder='Aqua...'
+                    minlength='3'
                 ></textarea>
             </div>
         </div>
