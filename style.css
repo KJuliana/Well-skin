@@ -914,3 +914,78 @@ span.ingredient__name {
     filter: brightness(0.95);
     transform: scale(0.98);
 }
+
+.about + .about {
+    margin-top: 2rem;
+    border-top: thin solid var(--border-color-light);
+    padding-top: 2rem;
+}
+
+.about__title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+}
+
+.about__list {
+    font-size: 0.875rem;
+}
+
+.spoiler {
+    margin-top: 1rem;
+}
+
+.spoiler__button {
+    border-radius: 0.25rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+.spoiler__button:hover {
+    background: #f5f5f5;
+}
+
+.spoiler__button:active {
+    background: #eee;
+}
+
+.score-groups {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.score-groups__item {
+    align-items: center;
+    border: thin solid var(--border-color);
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.score-groups__item--good {
+    border-color: hsl(120deg 100% 50% / 20%);
+}
+
+.score-groups__item--middle {
+    border-color: hsl(39deg 100% 50% / 30%);
+}
+
+.score-groups__item--bad {
+    border-color: hsl(0deg 100% 50% / 40%);
+}
+
+.score-groups__scores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.125rem;
+    justify-content: center;
+}
+
+.score-groups__label {
+    margin-top: 0.5rem;
+}

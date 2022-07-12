@@ -116,7 +116,7 @@ function render_list($ingredient): string {
         <div class = "ingredient-card__about">
         <p class="ingredient-card__about__text">' . $ingredient['full_description'] . '</p>
         <p class="ingredient-card__about__text">' . render_concerns($ingredient['concerns']) . '</p>
-        <p class="ingredient-card__about__header">Официальная информация COSING</p>
+        <p class="ingredient-card__about__header">Официальная информация CosIng</p>
         <p class="ingredient-card__about__text"> INCI name: ' . $ingredient['cosing_inci'] . '</p>
         <p class="ingredient-card__about__text"> All Functions: ' . render_function_list($ingredient['cosing_functions']) . '</p>
         <p class="ingredient-card__about__text"> Description: ' . $ingredient['cosing_description'] . '</p>
