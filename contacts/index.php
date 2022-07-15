@@ -10,7 +10,7 @@ $title = "Обратная связь";
 
 $body = "
 <section class='intro'>
-    <p class='intro__text'>Не связывайтесь со мной</p>
+    <p class='intro__text'>По вопросам работы сервиса вы можете обращаться на <a class='link' href='mailto:korolevajuliana.inf@gmail.com?subject=Вопрос'>почту ✉️</a>.</p>
 </section>";
 
 echo render_page($title, $header, $footer, $body);
