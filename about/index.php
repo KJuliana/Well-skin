@@ -32,7 +32,7 @@ function get_all_functions(mysqli $db): array {
 function render_concerns(array $concerns): string {
     $html = '';
     foreach ($concerns as $concern) {
-        $html .= "<li><strong>" . trim($concern['name']) . ".</strong> <span>" . $concern['description'] . "</span>";
+        $html .= "<li><strong>" . trim($concern['name']) . ".</strong> <span>" . $concern['description'] . "</span></li>";
     }
     return $html;
 }
@@ -40,7 +40,7 @@ function render_concerns(array $concerns): string {
 function render_functions(array $functions): string {
     $html = '';
     foreach ($functions as $function) {
-        $html .= "<li><strong>" . trim($function['name']) . ".</strong> <span>" . $function['description'] . "</span>";
+        $html .= "<li><strong>" . trim($function['name']) . ".</strong> <span>" . $function['description'] . "</span></li>";
     }
     return $html;
 }
